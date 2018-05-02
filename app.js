@@ -11,6 +11,8 @@ var pattern_timestamp = /^[0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\,[0-9][0-9][0-9] --
 
 var pattern_num = /\d+/;
 
+var pattern_chinese_symbol = /[，|。|、|？|！|￥|（|）|【|】|？|“|”]/g;
+
 const EventEmitter = require('events');
 class customEventEmitter extends EventEmitter{};
 const stateEmitter = new customEventEmitter();
@@ -31,7 +33,7 @@ stateEmitter.on(1002, function(){
 });
 
 stateEmitter.on(1003, function(){
-	generateSubtitle(combined, 'output3.srt');
+	generateSubtitle(combined, 'output4.srt');
 	// traverseStringArray(combined);
 	// traverseStringArray(merge_index);
 });
@@ -148,7 +150,9 @@ function traversingChinese(){
 			linecount++;
 		}else{
 			if(line != ''){
-				// console.log('subtitle line:'+ line);
+				console.log('subtitle line:'+ line);
+				line = line.replace(pattern_chinese_symbol, '  ');
+				console.log('removed punctuation:' + line);
 				var block = blocks_zh[blockcount];
 				if(linecount == 3)
 					block.subtitle += line;
