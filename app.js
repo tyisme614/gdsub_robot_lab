@@ -1,7 +1,7 @@
 const readline = require('linebyline');
 const fs = require('fs');
-const ytdl = require('youtube-dl');
-const ffmpeg = require('ffmpeg');
+// const ytdl = require('youtube-dl');
+// const ffmpeg = require('ffmpeg');
 
 var timelines_en = [];
 var timelines_zh = [];
@@ -57,7 +57,7 @@ stateEmitter.on(1003, function(){
 });
 
 stateEmitter.on(1004, function(){
-	generateSubtitle(combined, 'output5.srt');
+	generateSubtitle(combined, 'output6.srt');
 	// traverseStringArray(combined);
 	// traverseStringArray(merge_index);
 });
@@ -456,15 +456,15 @@ function generateSubtitle(combined, filename){
 				var start_time_str, end_time_str;
 
 				if(j==0){
-					start_time_str = convertTM2TS(output.start_time + 10);
-					end_time_str = convertTM2TS(output.middle_time[j] - 10);
+					start_time_str = convertTM2TS(output.start_time);
+					end_time_str = convertTM2TS(output.middle_time[j]);
 										
 				}else if(j == (output.subtitle_en.length - 1)){
-					start_time_str = convertTM2TS(output.middle_time[j - 1] + 10);
-					end_time_str = convertTM2TS(output.end_time - 10);
+					start_time_str = convertTM2TS(output.middle_time[j - 1]);
+					end_time_str = convertTM2TS(output.end_time);
 				}else {
-					start_time_str = convertTM2TS(output.middle_time[j - 1] + 10);
-					end_time_str = convertTM2TS(output.middle_time[j] - 10);
+					start_time_str = convertTM2TS(output.middle_time[j - 1]);
+					end_time_str = convertTM2TS(output.middle_time[j]);
 				}
 				str = str
 					  + (index + 1) + '\n'
@@ -478,8 +478,8 @@ function generateSubtitle(combined, filename){
 			fs.appendFileSync(filename, str);
 		}else{
 			var start_time_str, end_time_str;
-			start_time_str = convertTM2TS(output.start_time + 10);
-			end_time_str = convertTM2TS(output.end_time - 10);
+			start_time_str = convertTM2TS(output.start_time);
+			end_time_str = convertTM2TS(output.end_time);
 			str = str 
 				+ (index + 1) + '\n'
 				+ start_time_str + ' --> ' +  end_time_str + '\n'
