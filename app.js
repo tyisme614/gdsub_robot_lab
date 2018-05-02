@@ -1,7 +1,7 @@
 const readline = require('linebyline');
 const fs = require('fs');
-// const ytdl = require('youtube-dl');
-// const ffmpeg = require('ffmpeg');
+const ytdl = require('youtube-dl');
+const ffmpeg = require('ffmpeg');
 
 var timelines_en = [];
 var timelines_zh = [];
@@ -78,6 +78,14 @@ function downloadSubtitle(videoid, language){//en: english   zh-Hans: simplified
 	  if (err) throw err;
 	 	stateEmitter.emit(1000, language, videoid);
 	  console.log('subtitle files downloaded:', files);
+	});
+}
+
+function convertVTTToSrt(){
+	var process = ffmpeg('en.vtt');
+	process.then(function(sub){
+		console.log('converted subtitle file');
+		sub.save('gen.srt');
 	});
 }
 
@@ -546,6 +554,6 @@ function getWordCount(str){
 console.log('\n\n\n\n\n**********************************************************************\n');
 console.log('**********************************-------processing------****************************');
 console.log('\n\n\n\n');
-traversingEnglish();
-
+// traversingEnglish();
+convertVTTToSrt();
 
