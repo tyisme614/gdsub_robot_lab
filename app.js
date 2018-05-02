@@ -37,12 +37,16 @@ stateEmitter.on(1000, function(language, videoid){
 	}
 });
 
-stateEmitter.on(1001, function(){
+stateEmitter.on(1001, function(videoid){
+
+});
+
+stateEmitter.on(1002, function(){
 	// traverseArray(blocks_en);
 	traversingChinese();
 });
 
-stateEmitter.on(1002, function(){
+stateEmitter.on(1003, function(){
 	combineSubtitle3();
 	// combineSubtitle2();
 	// compare();
@@ -52,7 +56,7 @@ stateEmitter.on(1002, function(){
 	
 });
 
-stateEmitter.on(1003, function(){
+stateEmitter.on(1004, function(){
 	generateSubtitle(combined, 'output5.srt');
 	// traverseStringArray(combined);
 	// traverseStringArray(merge_index);
@@ -81,11 +85,12 @@ function downloadSubtitle(videoid, language){//en: english   zh-Hans: simplified
 	});
 }
 
-function convertVTTToSrt(){
-	var process = ffmpeg('en.vtt');
+function convertVTTToSrt(videoid, lang){
+	var src = __dirname + '/subtitle/' + videoid + '.' + lang + '.vtt';
+	var process = ffmpeg(src);
 	process.then(function(sub){
 		console.log('converted subtitle file');
-		sub.save('gen.srt');
+		sub.save(__dirname + '/subtitle/' + videoid  + '.' + lang + '.srt');
 	});
 }
 
@@ -164,7 +169,7 @@ function traversingEnglish(){
 	})
 	.on('close', function(e){
 		console.log('finished traversing english subtitle');
-		stateEmitter.emit(1001);
+		stateEmitter.emit(1002);
 		blockcount = 0;
 		linecount = 0;
 	});	
@@ -226,7 +231,7 @@ function traversingChinese(){
 	})
 	.on('close', function(e){
 		console.log('finished traversing chinese subtitle');
-		stateEmitter.emit(1002);
+		stateEmitter.emit(1003);
 	});
 }
 
@@ -438,7 +443,7 @@ function combineSubtitle3(){
 	}//loop of blocks_zh
 
 	console.log('finished combination');
-	stateEmitter.emit(1003);
+	stateEmitter.emit(1004);
 }
 
 function generateSubtitle(combined, filename){
@@ -554,6 +559,6 @@ function getWordCount(str){
 console.log('\n\n\n\n\n**********************************************************************\n');
 console.log('**********************************-------processing------****************************');
 console.log('\n\n\n\n');
-// traversingEnglish();
-convertVTTToSrt();
+traversingEnglish();
+
 
