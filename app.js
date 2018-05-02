@@ -1,21 +1,41 @@
 const readline = require('linebyline');
 const fs = require('fs');
+// const ytdl = require('youtube-dl');
+// const ffmpeg = require('ffmpeg');
 
-      var timelines_en = [];
-      var timelines_zh = [];
+var timelines_en = [];
+var timelines_zh = [];
+var videoid_list = [];
+var video_index = 0;
+//patterns
       //start time
 var pattern_start_time = /^[0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\,[0-9][0-9][0-9]/;
 //end time
 var pattern_end_time = /[0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\,[0-9][0-9][0-9]$/;
 var pattern_timestamp = /^[0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\,[0-9][0-9][0-9] --> [0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\,[0-9][0-9][0-9]/g;
-
 var pattern_num = /\d+/;
-
 var pattern_chinese_symbol = /[，|。|、|？|！|￥|（|）|【|】|？|“|”]/g;
+
+
 
 const EventEmitter = require('events');
 class customEventEmitter extends EventEmitter{};
 const stateEmitter = new customEventEmitter();
+
+
+stateEmitter.on(999, function(){
+	//video list loaded
+});
+
+stateEmitter.on(1000, function(language, videoid){
+	if(lanugage == 'en'){
+		downloadSubtitle(videoid, 'zh-Hans');
+	}else if(lanugage == 'zh-Hans'){
+		video_index++;
+		var videoid = videoid_list[video_index];
+		downloadSubtitle(videoid, 'en');
+	}
+});
 
 stateEmitter.on(1001, function(){
 	// traverseArray(blocks_en);
@@ -33,10 +53,33 @@ stateEmitter.on(1002, function(){
 });
 
 stateEmitter.on(1003, function(){
-	generateSubtitle(combined, 'output4.srt');
+	generateSubtitle(combined, 'output5.srt');
 	// traverseStringArray(combined);
 	// traverseStringArray(merge_index);
 });
+
+
+
+function downloadSubtitle(videoid, language){//en: english   zh-Hans: simplified chinese
+	var youtubedl = require('youtube-dl');
+
+ 	var url = 'https://www.youtube.com/watch?v=' + videoid;
+	var options = {
+	  // Write automatic subtitle file (youtube only)
+	  auto: false,
+	  // Downloads all the available subtitles.
+	  all: false,
+	  // Languages of subtitles to download, separated by commas.
+	  lang: language,
+	  // The directory to save the downloaded files in.
+	  cwd: __dirname + '/subtitles/' + videoid + '.vtt',
+	};
+	youtubedl.getSubs(url, options, function(err, files) {
+	  if (err) throw err;
+	 	stateEmitter.emit(1000, language, videoid);
+	  console.log('subtitle files downloaded:', files);
+	});
+}
 
 var linecount = 0;
 var blockcount = 0;
@@ -400,15 +443,15 @@ function generateSubtitle(combined, filename){
 				var start_time_str, end_time_str;
 
 				if(j==0){
-					start_time_str = convertTM2TS(output.start_time);
-					end_time_str = convertTM2TS(output.middle_time[j]);
+					start_time_str = convertTM2TS(output.start_time + 10);
+					end_time_str = convertTM2TS(output.middle_time[j] - 10);
 										
 				}else if(j == (output.subtitle_en.length - 1)){
-					start_time_str = convertTM2TS(output.middle_time[j - 1]);
-					end_time_str = convertTM2TS(output.end_time);
+					start_time_str = convertTM2TS(output.middle_time[j - 1] + 10);
+					end_time_str = convertTM2TS(output.end_time - 10);
 				}else {
-					start_time_str = convertTM2TS(output.middle_time[j - 1]);
-					end_time_str = convertTM2TS(output.middle_time[j]);
+					start_time_str = convertTM2TS(output.middle_time[j - 1] + 10);
+					end_time_str = convertTM2TS(output.middle_time[j] - 10);
 				}
 				str = str
 					  + (index + 1) + '\n'
@@ -422,8 +465,8 @@ function generateSubtitle(combined, filename){
 			fs.appendFileSync(filename, str);
 		}else{
 			var start_time_str, end_time_str;
-			start_time_str = convertTM2TS(output.start_time);
-			end_time_str = convertTM2TS(output.end_time);
+			start_time_str = convertTM2TS(output.start_time + 10);
+			end_time_str = convertTM2TS(output.end_time - 10);
 			str = str 
 				+ (index + 1) + '\n'
 				+ start_time_str + ' --> ' +  end_time_str + '\n'
