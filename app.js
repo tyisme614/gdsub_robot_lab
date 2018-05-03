@@ -54,9 +54,10 @@ stateEmitter.on(1001, function(videoid, language){
 	if(language == 'en'){
 			convertVTTToSrt(videoid, 'zh-Hans');
 		}else if(language == 'zh-Hans'){
+			video_index++;
 			if(video_index < video_list.length){
 				//download next
-				video_index++;
+				
 				var videoid = video_list[video_index];
 				convertVTTToSrt(videoid, 'en');
 			}else{
@@ -91,8 +92,8 @@ stateEmitter.on(1004, function(videoid){
 });
 
 stateEmitter.on(1005, function(videoid){
-	if(video_index  < video_list.length){
-		video_index++;
+	video_index++;
+	if(video_index  < video_list.length){		
 		var videoid = video_list[video_index];
 		traverseEnglish(videoid);
 
@@ -100,6 +101,7 @@ stateEmitter.on(1005, function(videoid){
 		console.log('all subtitles are generated, mission completed.');
 	}
 });
+
 
 function loadvideolist(src){
 	var rl_videos = readline(src);
