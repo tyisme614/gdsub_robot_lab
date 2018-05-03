@@ -179,7 +179,7 @@ function traverseEnglish(videoid){
 	console.log('traversing english subtitle...\n' + __dirname + '/subtitles/' + videoid  + '.en.srt');
 	var rl_en = readline(__dirname + '/subtitles/' + videoid  + '.en.srt');
 	rl_en.on('line', function(line, lineCount, byteCount) {
-		if(linecount == 0){
+		if(linecount == 0 && line != ''){
 			// console.log('line index:' + line);
 			//create new block
 			/**
@@ -479,7 +479,7 @@ function combineSubtitle3(videoid){
 		var loopCount = 0;
 		while(loop){
 			var block_en = blocks_en[j];
-			showBlock(block_en);
+			// showBlock(block_en);
 			//find english subtitle of the same start time as chinese subtitle
 			if((block_en.start_time >= block_zh.start_time && block_en.start_time < block_zh.end_time)
 				|| (block_en.end_time > block_zh.start_time && block_en.end_time <= block_zh.end_time)
