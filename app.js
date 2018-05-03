@@ -470,7 +470,8 @@ function combineSubtitle3(){
 			var block_en = blocks_en[j];
 			// showBlock(block_en);
 			//find english subtitle of the same start time as chinese subtitle
-			if(block_en.start_time >= block_zh.start_time && block_en.start_time < block_zh.end_time){
+			if((block_en.start_time >= block_zh.start_time && block_en.start_time < block_zh.end_time)
+				|| (block_en.end_time > block_zh.start_time && block_en.end_time <= block_zh.end_time)){
 				if(loopCount == 0){
 					outputData.subtitle_en.push(block_en.subtitle);
 					// console.log('chinese:' + block_zh.timestamp + ' english:' + block_en.timestamp);
@@ -491,7 +492,7 @@ function combineSubtitle3(){
 					// console.log('block_en.end_time >= block_zh.end_time)');
 					loop = false;					
 				}
-			}else if(block_en.end_time < block_zh.start_time){
+			}else if(block_en.end_time <= block_zh.start_time){
 				// console.log('block_en.start_time < block_zh.start_time');
 				j++;
 				continue;				
