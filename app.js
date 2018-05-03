@@ -77,8 +77,8 @@ stateEmitter.on(1002, function(videoid){
 	traverseChinese(videoid);
 });
 
-stateEmitter.on(1003, function(){
-	combineSubtitle3();
+stateEmitter.on(1003, function(videoid){
+	combineSubtitle3(videoid);
 	// combineSubtitle2();
 	// compare();
 	// traverseArray(blocks_en);
@@ -88,7 +88,7 @@ stateEmitter.on(1003, function(){
 });
 
 stateEmitter.on(1004, function(videoid){
-	generateSubtitle(combined, __dirname + '/output/' + videoid + '.gen.srt');
+	generateSubtitle(combined, __dirname + '/output/' + videoid + '.gen.srt', videoid);
 	// traverseStringArray(combined);
 	// traverseStringArray(merge_index);
 });
@@ -295,7 +295,7 @@ function traverseChinese(videoid){
 	})
 	.on('close', function(e){
 		console.log('finished traversing chinese subtitle');
-		stateEmitter.emit(1003);
+		stateEmitter.emit(1003, videoid);
 	});
 }
 
@@ -449,7 +449,7 @@ function combineSubtitle2(){
  * english subtitle array
  */
 
-function combineSubtitle3(){
+function combineSubtitle3(videoid){
 	var j = 0;
 	
 	for(var i=0; i<blocks_zh.length; i++){
@@ -514,10 +514,10 @@ function combineSubtitle3(){
 	}//loop of blocks_zh
 
 	console.log('finished combination');
-	stateEmitter.emit(1004);
+	stateEmitter.emit(1004,videoid);
 }
 
-function generateSubtitle(combined, filename){
+function generateSubtitle(combined, filename, videoid){
 	var index = 0;
 	for(var i=0; i<combined.length; i++){
 		var output = combined[i];
@@ -562,6 +562,8 @@ function generateSubtitle(combined, filename){
 			// console.log('unmerged line:\n' + str);
 		}
 	}
+	console.log('generated subtitle file:' + filename);
+	stateEmitter.emit(1005, videoid);
 }
 
 function showBlock(block){
