@@ -130,8 +130,10 @@ function downloadSubtitle(videoid, language){//en: english   zh-Hans: simplified
 	};
 	ytdl.getSubs(url, options, function(err, files) {
 	  if (err) throw err;	 	
-	  console.log('subtitle files downloaded:', files);
-	  
+	  console.log('subtitle files downloaded:', files[0]);
+	  fs.renameSync(__dirname + '/subtitles/' + files[0], 
+	  	__dirname + '/subtitles/' + videoid + '.' + language + '.vtt');
+	  console.log('changed file name to ' + __dirname + '/subtitles/' + videoid + '.' + language + '.vtt');
 	  stateEmitter.emit(1000,videoid, language);
 	});
 }
