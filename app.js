@@ -270,9 +270,9 @@ function traverseChinese(videoid){
 			linecount++;
 		}else{
 			if(line != ''){
-				console.log('subtitle line:'+ line);
+				// console.log('subtitle line:'+ line);
 				line = line.replace(pattern_chinese_symbol, '  ');
-				console.log('removed punctuation:' + line);
+				// console.log('removed punctuation:' + line);
 				var block = blocks_zh[blockcount];
 				if(linecount == 3)
 					block.subtitle += line;
@@ -499,6 +499,9 @@ function combineSubtitle3(){
 				loop = false;
 			}else{
 				console.log('unknown state');
+
+				loop = false;
+				throw new Error('unknown timestamp state,\n english: ' + block_en.timestamp + ' chinese:' + block_zh.timestamp);
 			}			
 			loopCount++;
 		}
