@@ -498,10 +498,12 @@ function combineSubtitle3(){
 			}else if(block_en.start_time > block_zh.end_time){
 				loop = false;
 			}else{
-				console.log('unknown state');
+				
 
 				loop = false;
-				throw new Error('unknown timestamp state,\n english: ' + block_en.timestamp + ' chinese:' + block_zh.timestamp);
+				var msg = 'unknown timestamp state,\n english: ' + block_en.timestamp + ' chinese:' + block_zh.timestamp;
+				console.log(msg);
+				throw new Error(msg);
 			}			
 			loopCount++;
 		}
