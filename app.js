@@ -180,7 +180,7 @@ function traverseEnglish(videoid){
 	var rl_en = readline(__dirname + '/subtitles/' + videoid  + '.en.srt');
 	rl_en.on('line', function(line, lineCount, byteCount) {
 		if(linecount == 0){
-			// console.log('line index:' + line);
+			console.log('line index:' + line);
 			//create new block
 			/**
 			 * block object
@@ -194,7 +194,7 @@ function traverseEnglish(videoid){
 			blocks_en.push(block);
 			linecount++;
 		}else if(linecount == 1){
-			// console.log('timestamp:' + line);
+			console.log('timestamp:' + line);
 			var block = blocks_en[blockcount];
 			var start_time = line.match(pattern_start_time)[0];
 			var end_time = line.match(pattern_end_time)[0];
@@ -204,7 +204,7 @@ function traverseEnglish(videoid){
 			linecount++;
 		}else{
 			if(line != ''){
-				// console.log('subtitle line:'+ line);
+				console.log('subtitle line:'+ line);
 				var block = blocks_en[blockcount];
 				//remove last whitespace
 				var c = line.charAt(line.length - 1);
@@ -219,7 +219,7 @@ function traverseEnglish(videoid){
 					block.subtitle = line;
 
 				linecount++;
-				// console.log('block subtitle:' + block.subtitle);
+				console.log('block subtitle:' + block.subtitle);
 			}else{
 				// console.log('new line');
 				linecount = 0;
