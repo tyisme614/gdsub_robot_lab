@@ -116,8 +116,7 @@ function loadvideolist(src){
 }
 
 function downloadSubtitle(videoid, language){//en: english   zh-Hans: simplified chinese
-	var youtubedl = require('youtube-dl');
-
+	
  	var url = 'https://www.youtube.com/watch?v=' + videoid;
 	var options = {
 	  // Write automatic subtitle file (youtube only)
@@ -129,7 +128,7 @@ function downloadSubtitle(videoid, language){//en: english   zh-Hans: simplified
 	  // The directory to save the downloaded files in.
 	  cwd: __dirname + '/subtitles/' + videoid  + '.' + language + '.vtt',
 	};
-	youtubedl.getSubs(url, options, function(err, files) {
+	ytdl.getSubs(url, options, function(err, files) {
 	  if (err) throw err;
 	 	stateEmitter.emit(1000,videoid, language);
 	  console.log('subtitle files downloaded:', files);
