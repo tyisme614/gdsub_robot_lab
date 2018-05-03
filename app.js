@@ -140,7 +140,7 @@ function downloadSubtitle(videoid, language){//en: english   zh-Hans: simplified
 }
 
 function convertVTTToSrt(videoid, lang){
-	var src = __dirname + '/subtitle/' + videoid + '.' + lang + '.vtt';
+	var src = __dirname + '/subtitles/' + videoid + '.' + lang + '.vtt';
 	var process = ffmpeg(src);
 	process.then(function(sub){
 		console.log('converted subtitle file');
