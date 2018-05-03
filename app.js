@@ -35,10 +35,10 @@ stateEmitter.on(1000, function(videoid, language){
 	if(language == 'en'){
 		downloadSubtitle(videoid, 'zh-Hans');
 	}else if(language == 'zh-Hans'){
+		video_index++;
 		if(video_index < video_list.length){
-			//download next
-			video_index++;
-			var videoid = video_list[video_index];
+			//download next			
+			var videoid = video_list[video_index];			
 			downloadSubtitle(videoid, 'en');
 		}else{
 			//downloading finished, start converting
@@ -120,14 +120,14 @@ function downloadSubtitle(videoid, language){//en: english   zh-Hans: simplified
 	
  	var url = 'https://www.youtube.com/watch?v=' + videoid;
 	var options = {
-	  // Write automatic subtitle file (youtube only)
-	  auto: false,
-	  // Downloads all the available subtitles.
-	  all: false,
-	  // Languages of subtitles to download, separated by commas.
-	  lang: language,
-	  // The directory to save the downloaded files in.
-	  cwd: __dirname + '/subtitles/',
+		  // Write automatic subtitle file (youtube only)
+		  auto: false,
+		  // Downloads all the available subtitles.
+		  all: false,
+		  // Languages of subtitles to download, separated by commas.
+		  lang: language,
+		  // The directory to save the downloaded files in.
+		  cwd: __dirname + '/subtitles/',
 	};
 	ytdl.getSubs(url, options, function(err, files) {
 	  if (err) throw err;	 	
