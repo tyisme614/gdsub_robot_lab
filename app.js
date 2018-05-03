@@ -31,9 +31,9 @@ stateEmitter.on(999, function(){
 });
 
 stateEmitter.on(1000, function(videoid, language){
-	if(lanugage == 'en'){
+	if(language == 'en'){
 		downloadSubtitle(videoid, 'zh-Hans');
-	}else if(lanugage == 'zh-Hans'){
+	}else if(language == 'zh-Hans'){
 		if(video_index < video_list.length){
 			//download next
 			video_index++;
@@ -50,9 +50,9 @@ stateEmitter.on(1000, function(videoid, language){
 });
 
 stateEmitter.on(1001, function(videoid, language){
-	if(lanugage == 'en'){
+	if(language == 'en'){
 			convertVTTToSrt(videoid, 'zh-Hans');
-		}else if(lanugage == 'zh-Hans'){
+		}else if(language == 'zh-Hans'){
 			if(video_index < video_list.length){
 				//download next
 				video_index++;
@@ -129,9 +129,10 @@ function downloadSubtitle(videoid, language){//en: english   zh-Hans: simplified
 	  cwd: __dirname + '/subtitles/',
 	};
 	ytdl.getSubs(url, options, function(err, files) {
-	  if (err) throw err;
-	 	stateEmitter.emit(1000,videoid, language);
+	  if (err) throw err;	 	
 	  console.log('subtitle files downloaded:', files);
+	  
+	  stateEmitter.emit(1000,videoid, language);
 	});
 }
 
