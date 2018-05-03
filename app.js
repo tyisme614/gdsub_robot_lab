@@ -122,7 +122,8 @@ function loadvideolist(src){
 		if(line != '' && line != ' '){
 			line = line.replace(/' '/g, '');//remove all spaces
 			console.log('video id:' + line);
-			var videoid = parseYTUrl(line);
+			var v = parseYTUrl(line);
+			var videoid = v.v;
 			console.log('videoid=' + videoid);
 			video_list.push(videoid);
 		}
