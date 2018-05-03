@@ -61,8 +61,7 @@ stateEmitter.on(1001, function(videoid, language){
 				convertVTTToSrt(videoid, 'en');
 			}else{
 				//convert finished, start traversing subtitle
-				linecount = 0;
-				blockcount = 0;
+				
 				blocks_en = [];
 				blocks_zh = [];
 				combined = [];
@@ -76,8 +75,7 @@ stateEmitter.on(1001, function(videoid, language){
 
 stateEmitter.on(1002, function(videoid){
 	// traverseArray(blocks_en);
-	linecount = 0;
-	blockcount = 0;
+	
 	traverseChinese(videoid);
 });
 
@@ -102,8 +100,7 @@ stateEmitter.on(1005, function(videoid){
 	video_index++;
 	if(video_index  < video_list.length){		
 		var id = video_list[video_index];
-		linecount = 0;
-		blockcount = 0;		
+				
 		blocks_en = [];
 		blocks_zh = [];
 		combined = [];
@@ -169,13 +166,14 @@ function convertVTTToSrt(videoid, lang){
 	});
 }
 
-var linecount = 0;
-var blockcount = 0;
+
 var blocks_en = [];
 var blocks_zh = [];
 var combined = [];
 
 function traverseEnglish(videoid){
+	var linecount = 0;
+	var blockcount = 0;
 	console.log('traversing english subtitle...\n' + __dirname + '/subtitles/' + videoid  + '.en.srt');
 	var rl_en = readline(__dirname + '/subtitles/' + videoid  + '.en.srt');
 	rl_en.on('line', function(line, lineCount, byteCount) {
@@ -256,10 +254,13 @@ function traverseEnglish(videoid){
 
 
 function traverseChinese(videoid){
+	var linecount = 0;
+	var blockcount = 0;
+
 	var rl_zh = readline(__dirname + '/subtitles/' + videoid  + '.zh-Hans.srt');
 	console.log('traversing chinese subtitle...\n' + __dirname + '/subtitles/' + videoid  + '.zh-Hans.srt');
 	rl_zh.on('line', function(line, lineCount, byteCount){
-		if(linecount == 0){
+		if(linecount == 0 && line != ''){
 			// console.log('line index:' + line);
 			//create new block
 			/**
@@ -270,6 +271,9 @@ function traverseChinese(videoid){
 			 */
 			var block = [];
 			block.subtitle = '';
+			block.start_time = 0;
+			block.end_time = 0;
+			block.timestamp = '';
 			blocks_zh.push(block);
 			linecount++;
 		}else if(linecount == 1){
@@ -482,7 +486,7 @@ function combineSubtitle3(videoid){
 		var loopCount = 0;
 		while(loop){
 			var block_en = blocks_en[j];
-			// showBlock(block_en);
+			showBlock(block_en);
 			//find english subtitle of the same start time as chinese subtitle
 			if((block_en.start_time >= block_zh.start_time && block_en.start_time < block_zh.end_time)
 				|| (block_en.end_time > block_zh.start_time && block_en.end_time <= block_zh.end_time)
