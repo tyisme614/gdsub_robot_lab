@@ -495,7 +495,7 @@ function combineSubtitle3(){
 				// console.log('block_en.start_time < block_zh.start_time');
 				j++;
 				continue;				
-			}else if(block_en.start_time > block_zh.end_time){
+			}else if(block_en.start_time >= block_zh.end_time){
 				loop = false;
 			}else{
 				
