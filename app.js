@@ -119,10 +119,14 @@ stateEmitter.on(1005, function(videoid){
 function loadvideolist(src){
 	var rl_videos = readline(src);
 	rl_videos.on('line', function(line, linecount, byteCount){
-
-		line = line.replace(/' '/g, '');//remove all spaces
-		console.log('video id:' + line);
-		video_list.push(line);
+		if(line != '' && line != ' '){
+			line = line.replace(/' '/g, '');//remove all spaces
+			console.log('video id:' + line);
+			var videoid = parseYTUrl(line);
+			console.log('videoid=' + videoid);
+			video_list.push(videoid);
+		}
+		
 	})
 	.on('close', function(e){
 		if(e)
@@ -631,6 +635,24 @@ function convertTM2TS(tm){
 
 function getWordCount(str){
 	return str.split(' ').length;
+}
+
+function parseYTUrl(url){
+	var params_raw = url.split('?')[1];
+	var params = params_raw.split('&');
+	var r = [];
+	for(var i=0; i<params.length; i++){
+		
+		var item = params[i];
+		if(item.split('=')[0] == 'v'){
+			r.v = item.split('=')[1];
+		}else if(item.split('=')[0] == 'index'){
+			r.index = item.split('=')[1];
+		}else if(item.split('=')[0] == 'list'){
+			r.list = item.split('=')[1];
+		}
+	}
+	return r;
 }
 
 
