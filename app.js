@@ -486,6 +486,7 @@ function combineSubtitle3(videoid){
 		var loopCount = 0;
 		while(loop){
 			var block_en = blocks_en[j];
+			console.log('j=' + j + ' blocks_en.length= ' + blocks_en.length);
 			showBlock(block_en);
 			//find english subtitle of the same start time as chinese subtitle
 			if((block_en.start_time >= block_zh.start_time && block_en.start_time < block_zh.end_time)
