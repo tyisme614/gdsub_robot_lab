@@ -56,12 +56,14 @@ stateEmitter.on(1001, function(videoid, language){
 		}else if(language == 'zh-Hans'){
 			video_index++;
 			if(video_index < video_list.length){
-				//download next
-				
+				//download next				
 				var videoid = video_list[video_index];
 				convertVTTToSrt(videoid, 'en');
 			}else{
 				//convert finished, start traversing subtitle
+				blocks_en = [];
+				blocks_zh = [];
+				combined = [];
 				video_index = 0;
 				var videoid = video_list[video_index];
 				traverseEnglish(videoid);
@@ -70,7 +72,7 @@ stateEmitter.on(1001, function(videoid, language){
 		}
 });
 
-stateEmitter.on(1002, function(){
+stateEmitter.on(1002, function(videoid){
 	// traverseArray(blocks_en);
 	traverseChinese(videoid);
 });
@@ -92,9 +94,14 @@ stateEmitter.on(1004, function(videoid){
 });
 
 stateEmitter.on(1005, function(videoid){
+	console.log('completed video:' + videoid);
 	video_index++;
 	if(video_index  < video_list.length){		
-		var videoid = video_list[video_index];
+		var videoid = video_list[video_index];		
+		blocks_en = [];
+		blocks_zh = [];
+		combined = [];
+
 		traverseEnglish(videoid);
 
 	}else{
@@ -156,7 +163,7 @@ var blockcount = 0;
 var blocks_en = [];
 var blocks_zh = [];
 var combined = [];
-var merge_index = [];
+
 function traverseEnglish(videoid){
 	console.log('traversing english subtitle...');
 	var rl_en = readline(__dirname + '/subtitles/' + videoid  + '.en.srt');
@@ -226,7 +233,7 @@ function traverseEnglish(videoid){
 	})
 	.on('close', function(e){
 		console.log('finished traversing english subtitle');
-		stateEmitter.emit(1002);
+		stateEmitter.emit(1002, videoid);
 		blockcount = 0;
 		linecount = 0;
 	});	
