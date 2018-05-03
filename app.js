@@ -26,6 +26,7 @@ const stateEmitter = new customEventEmitter();
 
 stateEmitter.on(999, function(){
 	//video list loaded,download subtitles
+	traverseStringArray(video_list);
 	video_index = 0;
 	downloadSubtitle(video_list[video_index], 'en');
 });
