@@ -190,6 +190,9 @@ function traverseEnglish(videoid){
 			 * subtitle
 			 */
 			var block = [];
+			block.start_time = 0;
+			block.end_time = 0;
+			block.timestamp = '';
 			block.subtitle = '';
 			blocks_en.push(block);
 			linecount++;
