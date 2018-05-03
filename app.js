@@ -556,7 +556,7 @@ function generateSubtitle(combined, filename, videoid){
 				index++;
 				
 			}			
-			// console.log('merged line:\n' + str);
+			console.log('merged line:\n' + str);
 			fs.appendFileSync(filename, str);
 		}else{
 			var start_time_str, end_time_str;
