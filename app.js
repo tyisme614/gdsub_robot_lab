@@ -163,7 +163,7 @@ function convertVTTToSrt(videoid, lang){
 	var src = __dirname + '/subtitles/' + videoid + '.' + lang + '.vtt';
 	var process = ffmpeg(src);
 	process.then(function(sub){
-		console.log('converted subtitle file');
+		console.log('converted subtitle file ' + videoid + '.' + lang + '.vtt');
 		sub.save(__dirname + '/subtitles/' + videoid  + '.' + lang + '.srt');
 		stateEmitter.emit(1001, videoid, lang);
 	});
