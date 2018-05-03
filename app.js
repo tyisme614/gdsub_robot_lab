@@ -1,7 +1,7 @@
 const readline = require('linebyline');
 const fs = require('fs');
-// const ytdl = require('youtube-dl');
-// const ffmpeg = require('ffmpeg');
+const ytdl = require('youtube-dl');
+const ffmpeg = require('ffmpeg');
 
 var timelines_en = [];
 var timelines_zh = [];
@@ -24,26 +24,52 @@ const stateEmitter = new customEventEmitter();
 
 
 stateEmitter.on(999, function(){
-	//video list loaded
+	//video list loaded,download subtitles
+	video_index = 0;
+	downloadSubtitle(videoid_list[video_index], 'en');
 });
 
-stateEmitter.on(1000, function(language, videoid){
+stateEmitter.on(1000, function(videoid, language){
 	if(lanugage == 'en'){
 		downloadSubtitle(videoid, 'zh-Hans');
 	}else if(lanugage == 'zh-Hans'){
-		video_index++;
-		var videoid = videoid_list[video_index];
-		downloadSubtitle(videoid, 'en');
+		if(video_index < video_list.length){
+			//download next
+			video_index++;
+			var videoid = videoid_list[video_index];
+			downloadSubtitle(videoid, 'en');
+		}else{
+			//downloading finished, start converting
+			video_index = 0;
+			var videoid = video_list[video_index];
+			convertVTTToSrt(videoid, 'en');
+		}
+		
 	}
 });
 
-stateEmitter.on(1001, function(videoid){
-
+stateEmitter.on(1001, function(videoid, language){
+	if(lanugage == 'en'){
+			convertVTTToSrt(videoid, 'zh-Hans');
+		}else if(lanugage == 'zh-Hans'){
+			if(video_index < video_list.length){
+				//download next
+				video_index++;
+				var videoid = videoid_list[video_index];
+				convertVTTToSrt(videoid, 'en');
+			}else{
+				//convert finished, start traversing subtitle
+				video_index = 0;
+				var videoid = video_list[video_index];
+				traverseEnglish(videoid);
+			}
+			
+		}
 });
 
 stateEmitter.on(1002, function(){
 	// traverseArray(blocks_en);
-	traversingChinese();
+	traverseChinese(videoid);
 });
 
 stateEmitter.on(1003, function(){
@@ -56,13 +82,37 @@ stateEmitter.on(1003, function(){
 	
 });
 
-stateEmitter.on(1004, function(){
-	generateSubtitle(combined, 'output6.srt');
+stateEmitter.on(1004, function(videoid){
+	generateSubtitle(combined, __dirname + '/output/' + videoid + '.gen.srt');
 	// traverseStringArray(combined);
 	// traverseStringArray(merge_index);
 });
 
+stateEmitter.on(1005, function(videoid){
+	if(video_index  < video_list.length){
+		video_index++;
+		var videoid = videoid_list[video_index];
+		traverseEnglish(videoid);
 
+	}else{
+		console.log('all subtitles are generated, mission completed.');
+	}
+});
+
+function loadvideolist(src){
+	var rl_videos = readline(src);
+	rl_videos.on('line', function(line, linecount, byteCount){
+
+		line = line.replace(/' '/g, '');//remove all spaces
+		console.log('video id:' + line);
+		videoid_list.push(line);
+	})
+	.on('close', function(e){
+		if(e)
+			console.log(e);
+		stateEmitter.emit(999);
+	})
+}
 
 function downloadSubtitle(videoid, language){//en: english   zh-Hans: simplified chinese
 	var youtubedl = require('youtube-dl');
@@ -76,11 +126,11 @@ function downloadSubtitle(videoid, language){//en: english   zh-Hans: simplified
 	  // Languages of subtitles to download, separated by commas.
 	  lang: language,
 	  // The directory to save the downloaded files in.
-	  cwd: __dirname + '/subtitles/' + videoid + '.vtt',
+	  cwd: __dirname + '/subtitles/' + videoid  + '.' + lang + '.vtt',
 	};
 	youtubedl.getSubs(url, options, function(err, files) {
 	  if (err) throw err;
-	 	stateEmitter.emit(1000, language, videoid);
+	 	stateEmitter.emit(1000,videoid, language);
 	  console.log('subtitle files downloaded:', files);
 	});
 }
@@ -90,7 +140,8 @@ function convertVTTToSrt(videoid, lang){
 	var process = ffmpeg(src);
 	process.then(function(sub){
 		console.log('converted subtitle file');
-		sub.save(__dirname + '/subtitle/' + videoid  + '.' + lang + '.srt');
+		sub.save(__dirname + '/subtitles/' + videoid  + '.' + lang + '.srt');
+		stateEmitter.emit(1001, videoid, lang);
 	});
 }
 
@@ -100,9 +151,9 @@ var blocks_en = [];
 var blocks_zh = [];
 var combined = [];
 var merge_index = [];
-function traversingEnglish(){
+function traverseEnglish(videoid){
 	console.log('traversing english subtitle...');
-	var rl_en = readline('./en.srt');
+	var rl_en = readline(__dirname + '/subtitles/' + videoid  + '.en.srt');
 	rl_en.on('line', function(line, lineCount, byteCount) {
 		if(linecount == 0){
 			// console.log('line index:' + line);
@@ -177,8 +228,8 @@ function traversingEnglish(){
 
 
 
-function traversingChinese(){
-	var rl_zh = readline('./zh.srt');
+function traverseChinese(videoid){
+	var rl_zh = readline(__dirname + '/subtitles/' + videoid  + '.zh-Hans.srt');
 	console.log('traversing chinese subtitle...');
 	rl_zh.on('line', function(line, lineCount, byteCount){
 		if(linecount == 0){
