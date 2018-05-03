@@ -6,7 +6,7 @@ const stdin = require('readline');
 
 var timelines_en = [];
 var timelines_zh = [];
-var videoid_list = [];
+var video_list = [];
 var video_index = 0;
 //patterns
       //start time
@@ -27,7 +27,7 @@ const stateEmitter = new customEventEmitter();
 stateEmitter.on(999, function(){
 	//video list loaded,download subtitles
 	video_index = 0;
-	downloadSubtitle(videoid_list[video_index], 'en');
+	downloadSubtitle(video_list[video_index], 'en');
 });
 
 stateEmitter.on(1000, function(videoid, language){
@@ -37,7 +37,7 @@ stateEmitter.on(1000, function(videoid, language){
 		if(video_index < video_list.length){
 			//download next
 			video_index++;
-			var videoid = videoid_list[video_index];
+			var videoid = video_list[video_index];
 			downloadSubtitle(videoid, 'en');
 		}else{
 			//downloading finished, start converting
@@ -56,7 +56,7 @@ stateEmitter.on(1001, function(videoid, language){
 			if(video_index < video_list.length){
 				//download next
 				video_index++;
-				var videoid = videoid_list[video_index];
+				var videoid = video_list[video_index];
 				convertVTTToSrt(videoid, 'en');
 			}else{
 				//convert finished, start traversing subtitle
@@ -92,7 +92,7 @@ stateEmitter.on(1004, function(videoid){
 stateEmitter.on(1005, function(videoid){
 	if(video_index  < video_list.length){
 		video_index++;
-		var videoid = videoid_list[video_index];
+		var videoid = video_list[video_index];
 		traverseEnglish(videoid);
 
 	}else{
@@ -106,7 +106,7 @@ function loadvideolist(src){
 
 		line = line.replace(/' '/g, '');//remove all spaces
 		console.log('video id:' + line);
-		videoid_list.push(line);
+		video_list.push(line);
 	})
 	.on('close', function(e){
 		if(e)
