@@ -2,6 +2,7 @@ const readline = require('linebyline');
 const fs = require('fs');
 const ytdl = require('youtube-dl');
 const ffmpeg = require('ffmpeg');
+const stdin = require('readline');
 
 var timelines_en = [];
 var timelines_zh = [];
@@ -610,6 +611,21 @@ function getWordCount(str){
 console.log('\n\n\n\n\n**********************************************************************\n');
 console.log('**********************************-------processing------****************************');
 console.log('\n\n\n\n');
-traversingEnglish();
+// traversingEnglish();
+
+const input = stdin.createInterface({
+	input: process.stdin,
+	output: process.stdout
+});
+
+input.question('please input the path of video list file:', (answer) => {
+	var listfile = `${answer}`;
+	console.log('list file:' + listfile);
+	loadvideolist(listfile);
+
+	input.close();
+});
+
+
 
 
