@@ -127,7 +127,7 @@ function downloadSubtitle(videoid, language){//en: english   zh-Hans: simplified
 	  // Languages of subtitles to download, separated by commas.
 	  lang: language,
 	  // The directory to save the downloaded files in.
-	  cwd: __dirname + '/subtitles/' + videoid  + '.' + lang + '.vtt',
+	  cwd: __dirname + '/subtitles/' + videoid  + '.' + language + '.vtt',
 	};
 	youtubedl.getSubs(url, options, function(err, files) {
 	  if (err) throw err;
