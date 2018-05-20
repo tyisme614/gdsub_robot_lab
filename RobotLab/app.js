@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 app.post('/translate', function(req, res){
-    console.log('post request, body:' + req.param.body);
+    console.log('post request, body:' + req.params.body);
     res.status(200);
     res.send('post request received');
     res.end();
