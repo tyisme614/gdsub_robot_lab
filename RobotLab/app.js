@@ -9,6 +9,15 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+app.post('/translate', function(req, res){
+    console.log('post request, body:' + req.param.body);
+    res.status(200);
+    res.send('post request received');
+    res.end();
+});
+
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
