@@ -10,13 +10,6 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-app.post('/translate', function(req, res){
-    console.log('post request, body:' + req.body);
-    res.status(200);
-    res.send('post request received');
-    res.end();
-});
-
 
 
 // view engine setup
@@ -30,6 +23,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.post('/translate', function(req, res){
+    console.log('post request, body:' + req.body);
+    res.status(200);
+    res.send('post request received');
+    res.end();
+});
+
+
+
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
