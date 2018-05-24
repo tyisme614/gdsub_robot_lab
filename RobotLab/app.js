@@ -37,21 +37,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.post('/translate', function(req, res){
-    console.log('post request, body:' + JSON.stringify(req.body));
-    console.log('original english:' + req.body.content);
+    // console.log('post request, body:' + JSON.stringify(req.body));
+    // console.log('original english:' + req.body.content);
     var src = req.body.content;
     translator.translate(src, target_lang)
         .then(function(results){
             var translation = results[0];
-            console.log('total results:' + results.length);
+            //console.log('total results:' + results.length);
             console.log('translation:' + translation);
-            //output all results
-            for(var i=0; i<results.length; i++){
-                var r = results[i];
-                console.log('result:' + r);
 
-
-            }
             res.status(200);
             res.send(translation);
             res.end();
