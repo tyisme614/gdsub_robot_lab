@@ -20,8 +20,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RobotLab/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="43" column="57" selection-start-line="43" selection-start-column="57" selection-end-line="43" selection-end-column="57" />
+            <state relative-caret-position="443">
+              <caret line="49" column="43" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -85,7 +85,7 @@
     <dismissed value="$PROJECT_DIR$/RobotLab/package.json" />
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="148" />
+    <option name="x" value="235" />
     <option name="y" value="23" />
     <option name="width" value="1400" />
     <option name="height" value="940" />
@@ -153,7 +153,7 @@
       <workItem from="1526714985548" duration="4274000" />
       <workItem from="1526827778202" duration="320000" />
       <workItem from="1527001853010" duration="13000" />
-      <workItem from="1527172017601" duration="898000" />
+      <workItem from="1527172017601" duration="1139000" />
     </task>
     <task id="LOCAL-00001" summary="output received data">
       <created>1527172387262</created>
@@ -162,11 +162,25 @@
       <option name="project" value="LOCAL" />
       <updated>1527172387262</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="use google-cloud/translate to process received sentences">
+      <created>1527173041223</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1527173041223</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fixed syntax error">
+      <created>1527173109976</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1527173109976</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5505000" />
+    <option name="totallyTimeSpent" value="5746000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -220,7 +234,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="output received data" />
-    <option name="LAST_COMMIT_MESSAGE" value="output received data" />
+    <MESSAGE value="use google-cloud/translate to process received sentences" />
+    <MESSAGE value="fixed syntax error" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed syntax error" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/RobotLab/app.js">
@@ -309,8 +325,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RobotLab/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="43" column="57" selection-start-line="43" selection-start-column="57" selection-end-line="43" selection-end-column="57" />
+        <state relative-caret-position="443">
+          <caret line="49" column="43" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="43" />
         </state>
       </provider>
     </entry>
