@@ -12,6 +12,8 @@ const app = express();
 
 const projectID = 'GLocalizationProjects';
 //google translate
+//google cloud translate api
+const google_translate = require('@google-cloud/translate');
 const target_lang = 'zh';
 const translator = new google_translate({
     projectId: projectID,
