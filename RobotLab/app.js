@@ -26,7 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.post('/translate', function(req, res){
-    console.log('post request, body:' + req.body);
+    console.log('post request, body:' + JSON.stringify(req.body));
+
     res.status(200);
     res.send('post request received');
     res.end();
