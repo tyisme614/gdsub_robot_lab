@@ -46,8 +46,11 @@ app.post('/translate', function(req, res){
             console.log('total results:' + results.length);
             console.log('translation:' + translation);
             //output all results
-            for(var r in results){
+            for(var i=0; i<results.length; i++){
+                var r = results[i];
                 console.log('result:' + r);
+
+
             }
             res.status(200);
             res.send(translation);
