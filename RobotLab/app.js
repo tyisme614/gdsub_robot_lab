@@ -1,14 +1,23 @@
-var createError = require('http-errors');
-var express = require('express');
-var bodyParser = require('body-parser');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
-var app = express();
+const app = express();
+
+const projectID = 'GLocalizationProjects';
+//google translate
+const target_lang = 'zh';
+const translator = new google_translate({
+    projectId: projectID,
+    keyFilename: '/home/yuan/auth/GLocalizationProjects-4f795dcb895a.json'
+});
+
 
 
 
@@ -27,10 +36,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/translate', function(req, res){
     console.log('post request, body:' + JSON.stringify(req.body));
+    console.log('original english:' + req.body.content);
+    var src = req.body.content;
+    translator.translate(src, target_lang)
+        .then(function(results){
+            var translation = results[0];
+            console.log('total results:' + results.length);
+            console.log('translation:' + translation);
+            res.status(200);
+            res.send(translation);
+            res.end();
+        });
 
-    res.status(200);
-    res.send('post request received');
-    res.end();
 });
 
 
