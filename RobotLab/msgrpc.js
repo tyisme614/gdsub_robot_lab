@@ -12,7 +12,7 @@ mEmitter.on('state', function(data){
 
     });
 
-var current_client;
+var clients = [];
 
 var sendMsg = function(event, arg){
     console.log('sendMsg');
@@ -41,9 +41,9 @@ var msgrpc = function(server, app){
     
     // Add a connect listener
     socket.on('connection', function(client){ 
-       console.log('new client connected');
+       console.log('new client connected, token=' + client.handshake.query.token);
 
-       current_client = client;
+       clients[client.handshake.query.token] = client;
       // Success!  Now listen to messages to be received
       client.on('message',function(msg){ 
         console.log('Received message from client!' , msg);
@@ -52,7 +52,7 @@ var msgrpc = function(server, app){
         switch(type){
           case '1001'://get client state
             console.log('socket.io 1001');
-            current_client.send('received 1001');
+            client.send('received 1001');
           break;
           case '1002'://get user list
           console.log('socket.io  1002');

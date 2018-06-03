@@ -96,8 +96,12 @@
 
         xhr.send(fd);
     }
-
-    var socket = io();
+    var token = new Date().getTime();
+    var socket = io({
+        query:{
+            token: token
+        }
+    });
 
     socket.connect();
 
