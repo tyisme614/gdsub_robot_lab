@@ -274,7 +274,7 @@ exports.generateSubtitle = function(token, targetFile){
     }
 
     if(observer != null){
-        observer.emit(1004, targetFile);
+        observer.emit(1004, token, targetFile);
     }
 
 }

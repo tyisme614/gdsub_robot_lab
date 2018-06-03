@@ -56,7 +56,7 @@ stateEmitter.on(1003, (token)=>{
     gdsub_util.generateSubtitle(token, task.target_file);
 });
 
-stateEmitter.on(1004, (file)=>{
+stateEmitter.on(1004, (token, file)=>{
     console.log('generated subtitle file:' + file);
     var data = {};
     data.token = token;
