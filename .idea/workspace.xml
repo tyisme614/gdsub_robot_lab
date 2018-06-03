@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61149b71-6868-449e-8f4b-42649f34cdb2" name="Default" comment="for debug">
-      <change beforePath="$PROJECT_DIR$/RobotLab/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/RobotLab/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotLab/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/RobotLab/views/index.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -64,8 +64,8 @@
       <file leaf-file-name="index.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RobotLab/views/index.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="679">
-              <caret line="126" column="34" selection-start-line="126" selection-start-column="34" selection-end-line="126" selection-end-column="34" />
+            <state relative-caret-position="343">
+              <caret line="104" column="6" selection-start-line="104" selection-start-column="6" selection-end-line="104" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -94,11 +94,11 @@
       <list>
         <option value="$PROJECT_DIR$/RobotLab/package.json" />
         <option value="$PROJECT_DIR$/RobotLab/routes/index.js" />
-        <option value="$PROJECT_DIR$/RobotLab/views/index.ejs" />
         <option value="$PROJECT_DIR$/RobotLab/bin/www" />
         <option value="$PROJECT_DIR$/RobotLab/utilities.js" />
         <option value="$PROJECT_DIR$/RobotLab/msgrpc.js" />
         <option value="$PROJECT_DIR$/RobotLab/app.js" />
+        <option value="$PROJECT_DIR$/RobotLab/views/index.ejs" />
       </list>
     </option>
   </component>
@@ -202,7 +202,7 @@
       <workItem from="1526714985548" duration="4274000" />
       <workItem from="1526827778202" duration="320000" />
       <workItem from="1527001853010" duration="13000" />
-      <workItem from="1527172017601" duration="18757000" />
+      <workItem from="1527172017601" duration="18911000" />
     </task>
     <task id="LOCAL-00001" summary="output received data">
       <created>1527172387262</created>
@@ -250,7 +250,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23364000" />
+    <option name="totallyTimeSpent" value="23518000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -404,8 +404,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RobotLab/views/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="126" column="34" selection-start-line="126" selection-start-column="34" selection-end-line="126" selection-end-column="34" />
+        <state relative-caret-position="343">
+          <caret line="104" column="6" selection-start-line="104" selection-start-column="6" selection-end-line="104" selection-end-column="6" />
         </state>
       </provider>
     </entry>

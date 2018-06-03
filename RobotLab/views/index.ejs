@@ -101,23 +101,8 @@
     function downloadFile(file){
         var xhr = new XMLHttpRequest();
         var url = document.location.origin + '/download?file=' + file;
+        window.open(url);
 
-        xhr.open('GET', url, true);
-
-        xhr.onreadystatechange = function(){
-            console.log('response data:' + xhr.responseText);
-
-            if(xhr.readyState==4 && xhr.status==200){
-                console.log('done');
-                //result = true;
-            }else{
-                console.log('xhr.status=' + xhr.status + '  xhr.readyState=' + xhr.readyState);
-
-
-            }
-        }
-
-        xhr.send();
 
     }
 
