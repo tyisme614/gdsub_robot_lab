@@ -6,8 +6,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const Busboy = require('busboy');
 const fs = require('fs');
-//server
-var server;
+
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');

@@ -25,6 +25,7 @@ var msgrpc = function(server, app){
 
     //listen to event to get video download state
     app.on('state', function(data){
+        console.log('sending ' + data.msg + 'to client. token=' + data.token);
         var c = clients[data.token];
         c.send(data.msg);
     });

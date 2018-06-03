@@ -30,7 +30,6 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 
-app.server = server;
 var msgrpc = require('../msgrpc');
 msgrpc.startSocket(server, app);
 
