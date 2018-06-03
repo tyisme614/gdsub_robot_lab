@@ -1,11 +1,102 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+	Created by Yuan
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<head>
+  <title>GDSub</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="icon" href="/images/googledev_small.png"/>
+  <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+  <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+  <!--socket.io-->
+  <script src="/socket.io/socket.io.js"></script>
+  <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-loading">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+  <!-- Main -->
+  <section id="main">
+    <header>
+      <h1>Google Developer Subtitles</h1>
+      <h3>Translator</h3>
+      <br/>
+
+    </header>
+
+    <hr />
+    <label><font font-size="16pt" color="red"><%=response%></font></label>
+
+    <div class="field">
+      <li>
+        <input type="file" id="srt_subtitle"/>
+        <br>
+        <br>
+    </div>
+    <div class="field">
+        <ul class="actions">
+        <li><a onclick="startTranslate()" class="button">Translate</a></li>
+      </ul>
+    </div>
+      <hr />
+      <a>GDSub Team <br><br>Email: yuan@gdsub.com</a>
+  </section>
+
+  <!-- Footer -->
+  <footer></footer>
+
+</div>
+
+<!-- Scripts -->
+<!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+<script>
+    if ('addEventListener' in window) {
+        window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+        document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+    }
+
+    function startTranslate(){
+        var upload_widget = document.getElementById('srt_subtitle');
+        var current_file = upload_widget.files[0];
+        console.log('current_file:' + current_file.name);
+
+        uploadFile(current_file, document.location.origin + '/subtitle');
+
+
+    }
+
+    //upload subtitle file
+    function uploadFile(file, url){
+        state.innerHTML = 'Task State:  uploading subtitle file...';
+        var xhr = new XMLHttpRequest();
+        var fd = new FormData();
+        // fd.append("author", "Shiv Kumar");
+        fd.append("name", "target subtitle");
+        fd.append("fileToUpload", file);
+        xhr.open('POST', url, true);
+
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState==4 && xhr.status==200){
+                //result = true;
+            }else{
+                console.log('xhr.status=' + xhr.status + '  xhr.readyState=' + xhr.readyState);
+                //encoutered error
+                state.innerHTML = 'Task State:' + xhr.responseText;
+
+            }
+        }
+
+        xhr.send(fd);
+    }
+</script>
+
+</body>
 </html>
