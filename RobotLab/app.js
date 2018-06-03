@@ -46,14 +46,16 @@ stateEmitter.on(1000, (blocks, sentence_block)=>{
     }
 });
 stateEmitter.on(1003, (token)=>{
-    console.log('translate processing completed, start generating subtitle file');
+
     var data = {};
     data.token = token;
     data.msg = 'translate processing completed, start generating subtitle file';
     app.emit('state', data);
 
+
     var task = tasks[token];
     gdsub_util.generateSubtitle(token, task.target_file);
+    console.log('translate processing completed, start generating subtitle file:' + task.target_file);
 });
 
 stateEmitter.on(1004, (token, file)=>{

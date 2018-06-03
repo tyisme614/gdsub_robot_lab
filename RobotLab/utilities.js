@@ -134,14 +134,14 @@ exports.traverse = function(file, token, callback){
                     sentence += line + ' ';
                     if(linecount == 2){
                         //push line number to subtitle index array
-                        console.log('push line number to tmp array, line number=' + block.line_number);
+                        //console.log('push line number to tmp array, line number=' + block.line_number);
                         sub_index_arr.push(block.line_number);
                     }
 
 
                 }else{
                     //debug
-                    console.log('not english subtitle, line:' + line);
+                    //console.log('not english subtitle, line:' + line);
                     block.issubtitle = false;
                     block.sentence = -1;
 
@@ -150,7 +150,7 @@ exports.traverse = function(file, token, callback){
                 if(line.substring(line.length - 1) == '.' || line.substring(line.length - 1) == '?'){
                     //debug
                     //console.log('push a new sentence into queue, s:' + sentence + ' index: ' + sentence_index);
-                    console.log('reached end of line, line=' + line);
+                   // console.log('reached end of line, line=' + line);
                     //reached end of a sentence
                     //replace multiple spaces to single space
 
@@ -220,54 +220,47 @@ exports.generateSubtitle = function(token, targetFile){
     for(var i=0; i<blocks.length; i++){
         var block = blocks[i];
         if(block.issubtitle){
-            console.log('current block is subtitle block');
-            console.log('append line number');
+            // console.log('current block is subtitle block');
+            // console.log('append line number');
             fs.appendFileSync(targetFile, block.line_number + '\n');
-            console.log('append timestamp');
+            // console.log('append timestamp');
             fs.appendFileSync(targetFile, block.timestamp + '\n');
 
-            console.log('block.sentence=' + block.sentence);
-            console.log('subtitle_count=' + subtitle_count);
+            // console.log('block.sentence=' + block.sentence);
+            // console.log('subtitle_count=' + subtitle_count);
 
             var s_block = sentence_block[block.sentence];
             if(subtitle_count <= (s_block.sub_index_arr.length - 1)){
                 var start = s_block.translation.length/s_block.sub_index_arr.length * subtitle_count;
                 var end = s_block.translation.length/s_block.sub_index_arr.length * (subtitle_count + 1);
                 var chinese = s_block.translation.substring(start, end);
-                console.log('translation length:' + s_block.translation.length);
-                console.log('subtitle array length:' + s_block.sub_index_arr.length);
-                console.log('start:' + start + ' end:' + end);
-
-                console.log('append chinese:' + chinese);
+                // console.log('translation length:' + s_block.translation.length);
+                // console.log('subtitle array length:' + s_block.sub_index_arr.length);
+                // console.log('start:' + start + ' end:' + end);
+                //
+                // console.log('append chinese:' + chinese);
                 fs.appendFileSync(targetFile, chinese + '\n');
                 if( subtitle_count == (s_block.sub_index_arr.length - 1) ){
-                    console.log('last subtitle block in current sentence appending');
+                    // console.log('last subtitle block in current sentence appending');
                     subtitle_count = 0;
                 }else{
                     subtitle_count++;
                 }
 
             }
-            // else if(subtitle_count == (s_block.sub_index_arr.length - 1)){
-            //     //last block
-            //     console.log('last subtitle block in current sentence appending');
-            //     var start = s_block.translation.length/s_block.sub_index_arr.length * subtitle_count;
-            //     var chinese = s_block.translation.substring(start, s_block.translation.length - 1) + '\n';
-            //     fs.appendFileSync(targetFile, chinese);
-            //     subtitle_count = 0;
-            // }
-            console.log('append english & blank line\n');
+
+            // console.log('append english & blank line\n');
             var english = block.subtitle + '\n\n';
             fs.appendFileSync(targetFile, english);
 
 
         }else{
-            console.log('this block is not subtitle block');
-            console.log('append line number');
+            // console.log('this block is not subtitle block');
+            // console.log('append line number');
             fs.appendFileSync(targetFile, block.line_number + '\n');
-            console.log('append timestamp');
+            // console.log('append timestamp');
             fs.appendFileSync(targetFile, block.timestamp + '\n');
-            console.log('append data & blank line');
+            // console.log('append data & blank line');
             fs.appendFileSync(targetFile, block.subtitle + '\n\n');
 
         }
