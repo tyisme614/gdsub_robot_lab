@@ -42,8 +42,7 @@ var msgrpc = function(server, app){
     // Add a connect listener
     socket.on('connection', function(client){ 
        console.log('new client connected');
-       console.log('remote client\'s token is ' + client.handshake.query.token);
-       console.log('remote client\'s id is ' + client.handshake.query.id);
+
        current_client = client;
       // Success!  Now listen to messages to be received
       client.on('message',function(msg){ 
@@ -53,7 +52,7 @@ var msgrpc = function(server, app){
         switch(type){
           case '1001'://get client state
             console.log('socket.io 1001');
-
+            current_client.send('received 1001');
           break;
           case '1002'://get user list
           console.log('socket.io  1002');
