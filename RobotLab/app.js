@@ -53,7 +53,7 @@ stateEmitter.on(1003, (token)=>{
     app.emit('state', data);
 
     var task = tasks[token];
-    gdsub_util.generateSubtitle(task.target_file);
+    gdsub_util.generateSubtitle(token, task.target_file);
 });
 
 stateEmitter.on(1004, (file)=>{
