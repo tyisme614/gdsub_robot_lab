@@ -121,9 +121,10 @@
 
     }
 
-    var ts = new Date().getTime();
+    var ts = new Date().getTime().toString();
 
     var token = ts + '_gdsub';
+    console.log('token=' + token);
     var socket = io({
         query:{
             token: token
