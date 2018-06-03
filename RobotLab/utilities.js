@@ -23,10 +23,12 @@ var observer;
 const EventEmitter = require('events');
 class customEventEmitter extends EventEmitter{};
 const stateEmitter = new customEventEmitter();
-stateEmitter.on(1001, ()=>{
+stateEmitter.on(1001, (token)=>{
+    var task = tasks[token];
+
     console.log('traversing subtitle finished, start translating english line by line');
-    sentence_index = 0;
-    translate(sentence_block[sentence_index]);
+    task.sentence_index = 0;
+    translate(token, task.sentence_block[task.sentence_index]);
 
 
     //debug
@@ -34,11 +36,12 @@ stateEmitter.on(1001, ()=>{
 });
 
 stateEmitter.on(1002, (token)=>{
-    sentence_index++;
-    if(sentence_index < sentence_block.length){
+    var task = tasks[token];
+    task.sentence_index++;
+    if(task.sentence_index < task.sentence_block.length){
 
-        console.log('translate sentence block ' + sentence_index);
-        translate(sentence_block[sentence_index]);
+        console.log('translate sentence block ' + task.sentence_index);
+        translate(token, task.sentence_block[task.sentence_index]);
     }else{
         console.log('translation process completed, generating subtitle');
         if(observer != null){
@@ -55,12 +58,24 @@ stateEmitter.on(1003, (token, file)=>{
     }
 });
 
+var tasks = [];
 
-var blocks = [];
-var sentence_block = [];
-var sentence_index = 0;
+// var blocks = [];
+// var sentence_block = [];
+// var sentence_index = 0;
 
 exports.traverse = function(file, token, callback){
+
+
+    var task = {};
+    task.token = token;
+    task.sentence_block = [];
+    task.blocks = [];
+    task.sentence_index = 0;
+    tasks[token] = task;
+
+    var sentence_block = task.sentence_block;
+    var blocks = task.blocks;
 
 
     var linecount = 0;
@@ -184,10 +199,10 @@ exports.traverse = function(file, token, callback){
         console.log(e);
     })
     .on('close', function(e){
-        console.log('finished traversing english subtitle, pass block arrays to callback');
+        console.log('finished traversing english subtitle, pass block arrays to callback. token=' + token);
 
         callback(token);
-        stateEmitter.emit(1001);
+        stateEmitter.emit(1001, token);
         blockcount = 0;
         linecount = 0;
     });
@@ -195,7 +210,10 @@ exports.traverse = function(file, token, callback){
 
 }
 
-exports.generateSubtitle = function(targetFile){
+exports.generateSubtitle = function(token, targetFile){
+    var task = tasks[token];
+    var sentence_block = task.sentence_block;
+    var blocks = task.blocks;
     console.log('start generating final subtitle file...' + targetFile);
     console.log('traversing subtitle blocks');
     var subtitle_count = 0;
@@ -281,12 +299,12 @@ exports.registerObserver = function(o){
 
 //translate sentence to Chinese
 //request google cloud service
-function translate(s_block){
+function translate(token, s_block){
     translator.translate(s_block.sentence, target_lang)
         .then(function(results){
             var translation = results[0];
             s_block.translation = translation;
-            stateEmitter.emit(1002);
+            stateEmitter.emit(1002, token);
            // console.log('translation:' + translation);
 
         });
