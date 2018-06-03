@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const Busboy = require('busboy');
+const fs = require('fs');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -54,7 +56,26 @@ app.post('/translate', function(req, res){
 });
 
 
+app.post('/subtitle', function(req, res){
+    var busboy = new Busboy({ headers: req.headers });
+    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+        console.log('busboy onfile');
+        console.log('fieldname=' + fieldname
+            + ' file=' + file
+            + ' filename=' + filename
+            + ' encoding=' + encoding
+            + ' mimetype=' + mimetype);
 
+        var target = __dirname + '/' + filename;
+        file.pipe(fs.createWriteStream(target));
+    });
+    busboy.on('finish', function() {
+        console.log('busboy onfinish');
+        res.writeHead(200, { 'Connection': 'close' });
+        res.end("Subtitle file uploaded");
+    });
+
+});
 
 
 
