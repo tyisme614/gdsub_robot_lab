@@ -123,7 +123,7 @@ app.post('/subtitle', function(req, res){
         task.token = token;
         task.filename = file_name_str;
         task.source_file = __dirname + '/subtitles/' + filename;
-        task.target_file = __dirname + '/subtitles/' + file_name_str + '.zh.srt';
+        task.target_file = __dirname + '/output/' + file_name_str + '.zh.srt';
         tasks[token] = task;
     });
     busboy.on('finish', function() {

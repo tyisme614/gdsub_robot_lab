@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61149b71-6868-449e-8f4b-42649f34cdb2" name="Default" comment="for debug">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RobotLab/msgrpc.js" beforeDir="false" afterPath="$PROJECT_DIR$/RobotLab/msgrpc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotLab/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/RobotLab/app.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,20 +16,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RobotLab/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="51" column="61" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="61" />
+            <state relative-caret-position="354">
+              <caret line="141" column="24" selection-start-line="141" selection-start-column="24" selection-end-line="141" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="msgrpc.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="msgrpc.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RobotLab/msgrpc.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+            <state relative-caret-position="397">
+              <caret line="28" column="36" lean-forward="true" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -38,8 +37,8 @@
       <file leaf-file-name="utilities.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RobotLab/utilities.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2417">
-              <caret line="292" column="11" selection-start-line="292" selection-start-column="2" selection-end-line="292" selection-end-column="11" />
+            <state relative-caret-position="3662">
+              <caret line="291" selection-start-line="291" selection-end-line="291" />
             </state>
           </provider>
         </entry>
@@ -83,6 +82,8 @@
       <find>stateEmitter.emit(1002</find>
       <find>translate</find>
       <find>app.emit(1003</find>
+      <find>translate processing</find>
+      <find>source_file</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -95,9 +96,9 @@
         <option value="$PROJECT_DIR$/RobotLab/routes/index.js" />
         <option value="$PROJECT_DIR$/RobotLab/views/index.ejs" />
         <option value="$PROJECT_DIR$/RobotLab/bin/www" />
-        <option value="$PROJECT_DIR$/RobotLab/app.js" />
         <option value="$PROJECT_DIR$/RobotLab/utilities.js" />
         <option value="$PROJECT_DIR$/RobotLab/msgrpc.js" />
+        <option value="$PROJECT_DIR$/RobotLab/app.js" />
       </list>
     </option>
   </component>
@@ -201,7 +202,7 @@
       <workItem from="1526714985548" duration="4274000" />
       <workItem from="1526827778202" duration="320000" />
       <workItem from="1527001853010" duration="13000" />
-      <workItem from="1527172017601" duration="17933000" />
+      <workItem from="1527172017601" duration="18281000" />
     </task>
     <task id="LOCAL-00001" summary="output received data">
       <created>1527172387262</created>
@@ -249,7 +250,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22540000" />
+    <option name="totallyTimeSpent" value="22888000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -387,24 +388,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/RobotLab/msgrpc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="28" column="36" lean-forward="true" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/RobotLab/utilities.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2417">
-          <caret line="292" column="11" selection-start-line="292" selection-start-column="2" selection-end-line="292" selection-end-column="11" />
+        <state relative-caret-position="3662">
+          <caret line="291" selection-start-line="291" selection-end-line="291" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RobotLab/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="51" column="61" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RobotLab/msgrpc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+        <state relative-caret-position="354">
+          <caret line="141" column="24" selection-start-line="141" selection-start-column="24" selection-end-line="141" selection-end-column="24" />
         </state>
       </provider>
     </entry>
