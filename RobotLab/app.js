@@ -26,7 +26,7 @@ const translator = new google_translate({
     keyFilename: '/home/yuan/auth/GLocalizationProjects-4f795dcb895a.json'
 });
 
-var targetFile;
+var tasks = [];
 
 const EventEmitter = require('events');
 class customEventEmitter extends EventEmitter{};
@@ -46,13 +46,23 @@ stateEmitter.on(1000, (blocks, sentence_block)=>{
         gdsub_util.showSentenceBlock(b);
     }
 });
-stateEmitter.on(1003, ()=>{
+stateEmitter.on(1003, (token)=>{
     console.log('translate processing completed, start generating subtitle file');
-    gdsub_util.generateSubtitle(targetFile);
+    var data = {};
+    data.token = token;
+    data.msg = 'translate processing completed, start generating subtitle file';
+    app.emit('state', data);
+
+    var task = tasks[token];
+    gdsub_util.generateSubtitle(task.target_file);
 });
 
 stateEmitter.on(1004, (file)=>{
     console.log('generated subtitle file:' + file);
+    var data = {};
+    data.token = token;
+    data.msg = 'generated subtitle file:' + file;
+    app.emit('state', data);
 });
 
 
@@ -68,6 +78,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+gdsub_util.registerObserver(stateEmitter);
 
 app.post('/translate', function(req, res){
     // console.log('post request, body:' + JSON.stringify(req.body));
@@ -88,6 +100,9 @@ app.post('/translate', function(req, res){
 
 
 app.post('/subtitle', function(req, res){
+    console.log('token=' + req.param('token'));
+    var token = req.param('token');
+
     var busboy = new Busboy({ headers: req.headers });
     busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
         console.log('busboy onfile');
@@ -100,19 +115,41 @@ app.post('/subtitle', function(req, res){
         var file_name_str = filename.substring(0, filename.lastIndexOf('.'));
         console.log('extracted file name:' + file_name_str);
         var target = __dirname + '/subtitles/' + filename;
-        targetFile = __dirname + '/subtitles/' + file_name_str + '.zh.srt';
+
         file.pipe(fs.createWriteStream(target));
+
+        var task = {};
+        task.token = token;
+        task.filename = file_name_str;
+        task.source_file = __dirname + '/subtitles/' + filename;
+        task.target_file = __dirname + '/subtitles/' + file_name_str + '.zh.srt';
+        tasks[token] = task;
     });
     busboy.on('finish', function() {
         console.log('busboy onfinish');
         res.send(200);
         res.end();
 
+        var data = {};
+        data.token = token;
+        data.msg = 'subtitle uploaded';
+        app.emit('state', data);
+        var t = tasks[token];
+        gdsub_util.traverse(t.source_file, token, (token)=>{
+            console.log('subtitle file traverse completed, token:' + token);
+            var data = {};
+            data.token = token;
+            data.msg = 'subtitle file traverse completed';
+            app.emit('state', data);
+        });
     });
 
     return req.pipe(busboy);
 });
 
+// app.get('/download', function(req, res){
+//
+// });
 
 
 app.use('/', indexRouter);

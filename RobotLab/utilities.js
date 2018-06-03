@@ -33,7 +33,7 @@ stateEmitter.on(1001, ()=>{
     //observer.emit(1000, blocks, sentence_block);
 });
 
-stateEmitter.on(1002, ()=>{
+stateEmitter.on(1002, (token)=>{
     sentence_index++;
     if(sentence_index < sentence_block.length){
 
@@ -42,16 +42,16 @@ stateEmitter.on(1002, ()=>{
     }else{
         console.log('translation process completed, generating subtitle');
         if(observer != null){
-            observer.emit(1003);
+            observer.emit(1003, token);
         }
     }
 
 });
 
-stateEmitter.on(1003, (file)=>{
+stateEmitter.on(1003, (token, file)=>{
    console.log('subtitle generated, file:' + file);
     if(observer != null){
-        observer.emit(1004, file);
+        observer.emit(1004, token, file);
     }
 });
 
@@ -60,7 +60,7 @@ var blocks = [];
 var sentence_block = [];
 var sentence_index = 0;
 
-exports.traverse = function(file, callback){
+exports.traverse = function(file, token, callback){
 
 
     var linecount = 0;
@@ -186,7 +186,7 @@ exports.traverse = function(file, callback){
     .on('close', function(e){
         console.log('finished traversing english subtitle, pass block arrays to callback');
 
-        callback(blocks, sentence_block);
+        callback(token);
         stateEmitter.emit(1001);
         blockcount = 0;
         linecount = 0;

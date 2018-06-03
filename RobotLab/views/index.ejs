@@ -67,7 +67,7 @@
         var current_file = upload_widget.files[0];
         console.log('current_file:' + current_file.name);
 
-        uploadFile(current_file, document.location.origin + '/subtitle');
+        uploadFile(current_file, document.location.origin + '/subtitle?token=' + token);
 
 
     }
@@ -96,6 +96,31 @@
 
         xhr.send(fd);
     }
+
+    //download generated subtitle file
+    function downloadFile(file){
+        var xhr = new XMLHttpRequest();
+        var url = document.location.origin + '/download?file=' + file;
+
+        xhr.open('GET', url, true);
+
+        xhr.onreadystatechange = function(){
+            console.log('response data:' + xhr.responseText);
+
+            if(xhr.readyState==4 && xhr.status==200){
+                console.log('done');
+                //result = true;
+            }else{
+                console.log('xhr.status=' + xhr.status + '  xhr.readyState=' + xhr.readyState);
+
+
+            }
+        }
+
+        xhr.send();
+
+    }
+
     var token = new Date().getTime();
     var socket = io({
         query:{
@@ -113,6 +138,16 @@
     // Add a connect listener
     socket.on('message',function(msg) {
         console.log('message:' + msg);
+        var type = msg.split(';')[0];
+        var data = msg.split(';')[1];
+        switch(type){
+            case 'state':
+                console.log('state:' + data);
+                break;
+            case 'finished':
+                downloadFile(data);
+                break;
+        }
     });
 
     // Add a disconnect listener
