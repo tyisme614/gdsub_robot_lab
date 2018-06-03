@@ -14,8 +14,7 @@
   <link rel="icon" href="/images/googledev_small.png"/>
   <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
   <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-  <!--socket.io-->
-  <script src="/socket.io/socket.io.js"></script>
+
   <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
 </head>
 <body class="is-loading">
@@ -75,7 +74,7 @@
 
     //upload subtitle file
     function uploadFile(file, url){
-        
+
         var xhr = new XMLHttpRequest();
         var fd = new FormData();
         // fd.append("author", "Shiv Kumar");
