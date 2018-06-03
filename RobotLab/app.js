@@ -49,20 +49,21 @@ stateEmitter.on(1003, (token)=>{
 
     var data = {};
     data.token = token;
-    data.msg = 'translate processing completed, start generating subtitle file';
+    data.msg = 'state;translate processing completed, start generating subtitle file';
     app.emit('state', data);
 
 
     var task = tasks[token];
     gdsub_util.generateSubtitle(token, task.target_file);
-    console.log('translate processing completed, start generating subtitle file:' + task.target_file);
 });
 
 stateEmitter.on(1004, (token, file)=>{
     console.log('generated subtitle file:' + file);
+    var task = tasks[token];
+
     var data = {};
     data.token = token;
-    data.msg = 'generated subtitle file:' + file;
+    data.msg = 'finished;' + task.filename;
     app.emit('state', data);
 });
 
@@ -148,9 +149,11 @@ app.post('/subtitle', function(req, res){
     return req.pipe(busboy);
 });
 
-// app.get('/download', function(req, res){
-//
-// });
+app.get('/download', function(req, res){
+        var filename = req.param('file');
+        var target = __dirname + '/output/' + filename + '.zh.srt';
+        res.download(target);
+});
 
 
 app.use('/', indexRouter);
