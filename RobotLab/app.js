@@ -75,6 +75,7 @@ app.post('/subtitle', function(req, res){
         res.end("Subtitle file uploaded");
     });
 
+    return req.pipe(busboy);
 });
 
 

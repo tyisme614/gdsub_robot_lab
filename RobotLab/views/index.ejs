@@ -77,7 +77,7 @@
 
         var xhr = new XMLHttpRequest();
         var fd = new FormData();
-        // fd.append("author", "Shiv Kumar");
+
         fd.append("name", "target subtitle");
         fd.append("fileToUpload", file);
         xhr.open('POST', url, true);
@@ -87,8 +87,7 @@
                 //result = true;
             }else{
                 console.log('xhr.status=' + xhr.status + '  xhr.readyState=' + xhr.readyState);
-                //encoutered error
-                state.innerHTML = 'Task State:' + xhr.responseText;
+
 
             }
         }
