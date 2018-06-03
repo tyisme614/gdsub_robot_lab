@@ -66,7 +66,9 @@ app.post('/subtitle', function(req, res){
             + ' encoding=' + encoding
             + ' mimetype=' + mimetype);
 
-        var target = __dirname + '/' + filename;
+        var file_name_str = filename.substring(0, filename.lastIndexOf('.'));
+        console.log('extracted file name:' + file_name_str);
+        var target = __dirname + '/subtitles/' + file_name_str;
         file.pipe(fs.createWriteStream(target));
     });
     busboy.on('finish', function() {
