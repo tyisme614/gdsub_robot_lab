@@ -6,9 +6,13 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const Busboy = require('busboy');
 const fs = require('fs');
+//server
+var server;
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+
+const gdsub_util = require('./utilities');
 
 const app = express();
 
@@ -22,7 +26,34 @@ const translator = new google_translate({
     keyFilename: '/home/yuan/auth/GLocalizationProjects-4f795dcb895a.json'
 });
 
+var targetFile;
 
+const EventEmitter = require('events');
+class customEventEmitter extends EventEmitter{};
+const stateEmitter = new customEventEmitter();
+stateEmitter.on(1000, (blocks, sentence_block)=>{
+    //debugging
+    for(var i=0; i<blocks.length; i++){
+        console.log('array index:' + i);
+        var b = blocks[i];
+        gdsub_util.showSubtitleBlock(b);
+        // console.log('sentence:' + sentences[b.sentence]);
+
+    }
+
+    for(var i=0; i<sentence_block.length; i++){
+        var b = sentence_block[i];
+        gdsub_util.showSentenceBlock(b);
+    }
+});
+stateEmitter.on(1003, ()=>{
+    console.log('translate processing completed, start generating subtitle file');
+    gdsub_util.generateSubtitle(targetFile);
+});
+
+stateEmitter.on(1004, (file)=>{
+    console.log('generated subtitle file:' + file);
+});
 
 
 // view engine setup
@@ -68,13 +99,15 @@ app.post('/subtitle', function(req, res){
 
         var file_name_str = filename.substring(0, filename.lastIndexOf('.'));
         console.log('extracted file name:' + file_name_str);
-        var target = __dirname + '/subtitles/' + file_name_str;
+        var target = __dirname + '/subtitles/' + filename;
+        targetFile = __dirname + '/subtitles/' + file_name_str + '.zh.srt';
         file.pipe(fs.createWriteStream(target));
     });
     busboy.on('finish', function() {
         console.log('busboy onfinish');
-        res.writeHead(200, { 'Connection': 'close' });
-        res.end("Subtitle file uploaded");
+        res.send(200);
+        res.end();
+
     });
 
     return req.pipe(busboy);
