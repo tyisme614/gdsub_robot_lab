@@ -238,6 +238,9 @@ exports.generateSubtitle = function(token, targetFile){
                 var start = s_block.translation.length/s_block.sub_index_arr.length * subtitle_count;
                 var end = s_block.translation.length/s_block.sub_index_arr.length * (subtitle_count + 1);
                 var chinese = s_block.translation.substring(start, end);
+                chinese = chinese.replace(/[，。]/g, '  ');
+                console.log('chinese: ' + chinese);
+
                 // console.log('translation length:' + s_block.translation.length);
                 // console.log('subtitle array length:' + s_block.sub_index_arr.length);
                 // console.log('start:' + start + ' end:' + end);
@@ -300,10 +303,9 @@ function translate(token, s_block){
     translator.translate(s_block.sentence, target_lang)
         .then(function(results){
             var translation = results[0];
-            translation = translation.replace(/[，。]/g, '  ');
             s_block.translation = translation;
             stateEmitter.emit(1002, token);
-            console.log('translation:' + translation);
+
 
 
         });
