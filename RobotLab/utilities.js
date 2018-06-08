@@ -224,64 +224,67 @@ exports.generateSubtitle = function(token, targetFile){
            console.log('file exists, remove it');
            fs.unlinkSync(targetFile);
        }
-    });
-    console.log('traversing subtitle blocks');
-    var subtitle_count = 0;
-    for(var i=0; i<blocks.length; i++){
-        var block = blocks[i];
-        if(block.issubtitle){
-            // console.log('current block is subtitle block');
-            // console.log('append line number');
-            fs.appendFileSync(targetFile, block.line_number + '\n');
-            // console.log('append timestamp');
-            fs.appendFileSync(targetFile, block.timestamp + '\n');
 
-            // console.log('block.sentence=' + block.sentence);
-            // console.log('subtitle_count=' + subtitle_count);
+        console.log('traversing subtitle blocks');
+        var subtitle_count = 0;
+        for(var i=0; i<blocks.length; i++){
+            var block = blocks[i];
+            if(block.issubtitle){
+                // console.log('current block is subtitle block');
+                // console.log('append line number');
+                fs.appendFileSync(targetFile, block.line_number + '\n');
+                // console.log('append timestamp');
+                fs.appendFileSync(targetFile, block.timestamp + '\n');
 
-            var s_block = sentence_block[block.sentence];
-            if(subtitle_count <= (s_block.sub_index_arr.length - 1)){
-                var start = s_block.translation.length/s_block.sub_index_arr.length * subtitle_count;
-                var end = s_block.translation.length/s_block.sub_index_arr.length * (subtitle_count + 1);
-                var chinese = s_block.translation.substring(start, end);
-                //replace Chinese punctuation to double white-spaces
-                chinese = chinese.replace(/[，。]/g, '  ');
+                // console.log('block.sentence=' + block.sentence);
+                // console.log('subtitle_count=' + subtitle_count);
 
-                // console.log('translation length:' + s_block.translation.length);
-                // console.log('subtitle array length:' + s_block.sub_index_arr.length);
-                // console.log('start:' + start + ' end:' + end);
-                //
-                // console.log('append chinese:' + chinese);
-                fs.appendFileSync(targetFile, chinese + '\n');
-                if( subtitle_count == (s_block.sub_index_arr.length - 1) ){
-                    // console.log('last subtitle block in current sentence appending');
-                    subtitle_count = 0;
-                }else{
-                    subtitle_count++;
+                var s_block = sentence_block[block.sentence];
+                if(subtitle_count <= (s_block.sub_index_arr.length - 1)){
+                    var start = s_block.translation.length/s_block.sub_index_arr.length * subtitle_count;
+                    var end = s_block.translation.length/s_block.sub_index_arr.length * (subtitle_count + 1);
+                    var chinese = s_block.translation.substring(start, end);
+                    //replace Chinese punctuation to double white-spaces
+                    chinese = chinese.replace(/[，。]/g, '  ');
+
+                    // console.log('translation length:' + s_block.translation.length);
+                    // console.log('subtitle array length:' + s_block.sub_index_arr.length);
+                    // console.log('start:' + start + ' end:' + end);
+                    //
+                    // console.log('append chinese:' + chinese);
+                    fs.appendFileSync(targetFile, chinese + '\n');
+                    if( subtitle_count == (s_block.sub_index_arr.length - 1) ){
+                        // console.log('last subtitle block in current sentence appending');
+                        subtitle_count = 0;
+                    }else{
+                        subtitle_count++;
+                    }
+
                 }
 
+                // console.log('append english & blank line\n');
+                var english = block.subtitle + '\n\n';
+                fs.appendFileSync(targetFile, english);
+
+
+            }else{
+                // console.log('this block is not subtitle block');
+                // console.log('append line number');
+                fs.appendFileSync(targetFile, block.line_number + '\n');
+                // console.log('append timestamp');
+                fs.appendFileSync(targetFile, block.timestamp + '\n');
+                // console.log('append data & blank line');
+                fs.appendFileSync(targetFile, block.subtitle + '\n\n');
+
             }
-
-            // console.log('append english & blank line\n');
-            var english = block.subtitle + '\n\n';
-            fs.appendFileSync(targetFile, english);
-
-
-        }else{
-            // console.log('this block is not subtitle block');
-            // console.log('append line number');
-            fs.appendFileSync(targetFile, block.line_number + '\n');
-            // console.log('append timestamp');
-            fs.appendFileSync(targetFile, block.timestamp + '\n');
-            // console.log('append data & blank line');
-            fs.appendFileSync(targetFile, block.subtitle + '\n\n');
-
         }
-    }
 
-    if(observer != null){
-        observer.emit(1004, token, targetFile);
-    }
+        if(observer != null){
+            observer.emit(1004, token, targetFile);
+        }
+
+    });
+
 
 }
 
