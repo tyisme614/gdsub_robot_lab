@@ -42,6 +42,10 @@ stateEmitter.on(1002, (token)=>{
 
         console.log('translate sentence block ' + task.sentence_index);
         translate(token, task.sentence_block[task.sentence_index]);
+        if(observer != null){
+            var msg = 'translating sentence ' + task.sentence_index + ' of ' + task.sentence_block.length;
+            observer.emit(1001, token, msg);
+        }
     }else{
         console.log('translation process completed, generating subtitle');
         if(observer != null){

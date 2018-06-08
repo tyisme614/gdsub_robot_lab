@@ -45,6 +45,14 @@ stateEmitter.on(1000, (blocks, sentence_block)=>{
         gdsub_util.showSentenceBlock(b);
     }
 });
+
+stateEmitter.on(1001, (token, progress)=>{
+    var data = {};
+    data.token = token;
+    data.msg = 'state;' + progress;
+    app.emit('state', data);
+});
+
 stateEmitter.on(1003, (token)=>{
 
     var data = {};
