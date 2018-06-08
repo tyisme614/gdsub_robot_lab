@@ -219,6 +219,12 @@ exports.generateSubtitle = function(token, targetFile){
     var sentence_block = task.sentence_block;
     var blocks = task.blocks;
     console.log('start generating final subtitle file...' + targetFile);
+    fs.access(targetFile, (err) => {
+       if(!err){
+           console.log('file exists, remove it');
+           fs.unlinkSync(targetFile);
+       }
+    });
     console.log('traversing subtitle blocks');
     var subtitle_count = 0;
     for(var i=0; i<blocks.length; i++){
@@ -238,8 +244,8 @@ exports.generateSubtitle = function(token, targetFile){
                 var start = s_block.translation.length/s_block.sub_index_arr.length * subtitle_count;
                 var end = s_block.translation.length/s_block.sub_index_arr.length * (subtitle_count + 1);
                 var chinese = s_block.translation.substring(start, end);
+                //replace Chinese punctuation to double white-spaces
                 chinese = chinese.replace(/[，。]/g, '  ');
-                console.log('chinese: ' + chinese);
 
                 // console.log('translation length:' + s_block.translation.length);
                 // console.log('subtitle array length:' + s_block.sub_index_arr.length);
