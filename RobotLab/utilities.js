@@ -300,9 +300,10 @@ function translate(token, s_block){
     translator.translate(s_block.sentence, target_lang)
         .then(function(results){
             var translation = results[0];
+            translation = translation.replace(/[，|。]/g, '  ');
             s_block.translation = translation;
             stateEmitter.emit(1002, token);
-           // console.log('translation:' + translation);
+
 
         });
 }
