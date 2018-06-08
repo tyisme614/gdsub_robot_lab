@@ -303,6 +303,7 @@ function translate(token, s_block){
             translation = translation.replace(/[，。]/g, '  ');
             s_block.translation = translation;
             stateEmitter.emit(1002, token);
+            console.log('translation:' + translation);
 
 
         });
