@@ -10,6 +10,7 @@ const fs = require('fs');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const rttRouter = require('./routes/rttranslator');
 
 const gdsub_util = require('./utilities');
 
@@ -166,6 +167,7 @@ app.get('/download', function(req, res){
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/rtt', rttRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
