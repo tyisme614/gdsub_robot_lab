@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="61149b71-6868-449e-8f4b-42649f34cdb2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/RobotLab/views/rttranslator.html" beforeDir="false" afterPath="$PROJECT_DIR$/RobotLab/views/rttranslator.ejs" afterDir="false" />
-    </list>
+    <list default="true" id="61149b71-6868-449e-8f4b-42649f34cdb2" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -250,7 +248,7 @@
       <workItem from="1529308870658" duration="1473000" />
       <workItem from="1542204129807" duration="370000" />
       <workItem from="1542212206472" duration="77000" />
-      <workItem from="1542267052611" duration="1171000" />
+      <workItem from="1542267052611" duration="1590000" />
     </task>
     <task id="LOCAL-00001" summary="output received data">
       <created>1527172387262</created>
@@ -347,7 +345,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31633000" />
+    <option name="totallyTimeSpent" value="32052000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
