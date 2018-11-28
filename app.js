@@ -117,7 +117,7 @@ function loadvideolist(src){
 	var rl_videos = readline(src);
 	rl_videos.on('line', function(line, linecount, byteCount){
 		if(line != '' && line != ' '){
-			line = line.replace(/' '/g, '');//remove all spaces
+			line = line.replace(/ +/g, '');//remove all spaces
 			console.log('video id:' + line);
 			var v = parseYTUrl(line);
 			var videoid = v.v;
