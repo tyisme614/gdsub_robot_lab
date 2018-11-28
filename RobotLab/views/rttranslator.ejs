@@ -10,6 +10,121 @@
     <title>Real-Time Translator</title>
 </head>
 <body>
-    <button class="foo-button mdc-button">Button</button>
+<div class="mdc-layout-div" style="text-align:center;width:1024px;">
+    <label>Click Here to Start Recording</label>
+    <button id="btn_record" class="mdc-button mdc-button--unelevated" style="color:white;background-color:#00B7FF" onclick="onRecordClick()">Record</button>
+
+</div>
+<!--<div class="mdc-layout-grid">-->
+    <!--<div class="mdc-layout-grid__inner">-->
+        <!--<div class="mdc-layout-grid__cell" style="align-content:center;">cell1</div>-->
+        <!--<div class="mdc-layout-grid__cell">cell2</div>-->
+        <!--<div class="mdc-layout-grid__cell"> <button class="foo-button mdc-button">Sample Button</button></div>-->
+
+    <!--</div>-->
+<!--</div>-->
+
 </body>
+
+<script>
+    console.log('initializing audio api');
+    //check webrtc api
+    try {
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
+        window.audioContext = new AudioContext();
+    } catch (e) {
+        alert('Web Audio API not supported.');
+    }
+
+ //   const audio = document.querySelector('audio');
+
+    const constraints = window.constraints = {
+        audio: {
+            sampleRate: 16000,
+            sampleSize: 16,
+            channelCount: 1,
+            noiseSuppression: false
+        },
+        video: false
+
+    };
+
+
+    let audioTrack;
+    function handleSuccess(stream) {
+        let audioTracks = stream.getAudioTracks();
+        audioTrack = audioTracks[0];
+        console.log(audioTrack.getSettings());
+        audioTrack.applyConstraints({
+            sampleRate: 16000,
+            channelCount: 1,
+            noiseSuppression: false
+        });
+        console.log(audioTrack.getSettings());
+        let context = new AudioContext();
+        let src = context.createMediaStreamSource(stream);
+        let processor = context.createScriptProcessor(1024, 1, 1);
+
+        src.connect(processor);
+        processor.connect(context.destination);
+
+        // processor.onaudioprocess = function(e){
+        //     console.log('input buffer: ' + JSON.stringify(e.inputBuffer));
+        //     console.log(e.inputBuffer);
+        //     console.log('output buffer: ' + JSON.stringify(e.outputBuffer));
+        //     console.log(e.outputBuffer);
+        //     console.log(new Date());
+        // }
+
+        // console.log('Got stream with constraints:', constraints);
+        // console.log('Using audio device: ' + audioTracks[0].label);
+        stream.oninactive = function() {
+            console.log('Stream ended');
+        };
+        stream.onaddtrack = (mt) => {
+            console.log('new track has been added to current stream, id=' + mt.track.id);
+        };
+        stream.onremovetrack = (mt) => {
+            console.log('removing track from current stream');
+        }
+        // window.stream = stream; // make variable available to browser console
+        //audio.srcObject = stream;
+    }
+
+    function handleError(error) {
+        console.log('navigator.getUserMedia error: ', error);
+    }
+
+
+    let supportedconstraints = navigator.mediaDevices.getSupportedConstraints();
+    for(let constraint in supportedconstraints){
+        console.log(constraint);
+    }
+
+    let isRecord = false;
+    function onRecordClick(){
+        if(!isRecord ){
+            console.log('initialize audio stream');
+            navigator.mediaDevices.getUserMedia(
+                {
+                audio: {
+                    sampleRate: 16000,
+                    channelCount: 1,
+                    noiseSuppression: false
+                },
+                video: false,
+
+
+            }).then(handleSuccess).catch(handleError);
+            isRecord = true;
+            document.getElementById('btn_record').innerText = 'Stop';
+        }else{
+            console.log('stop audio stream');
+            audioTrack.stop();
+            isRecord = false;
+            document.getElementById('btn_record').innerText = 'Record';
+        }
+
+    }
+</script>
 </html>
