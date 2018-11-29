@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61149b71-6868-449e-8f4b-42649f34cdb2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/converter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/string_patterns.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,8 +19,8 @@
       <file leaf-file-name="converter.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/converter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="224">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -132,7 +127,7 @@
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/RobotLab/package.json" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="1672" />
     <option name="y" value="-317" />
     <option name="width" value="1096" />
@@ -208,7 +203,7 @@
       <workItem from="1542204129807" duration="370000" />
       <workItem from="1542212206472" duration="77000" />
       <workItem from="1542267052611" duration="1590000" />
-      <workItem from="1543390082151" duration="4785000" />
+      <workItem from="1543390082151" duration="5543000" />
     </task>
     <task id="LOCAL-00001" summary="output received data">
       <created>1527172387262</created>
@@ -305,10 +300,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36837000" />
+    <option name="totallyTimeSpent" value="37595000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1672" y="-317" width="1096" height="1896" extended-state="6" />
+    <frame x="1672" y="-317" width="1096" height="1896" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.32577905" />
@@ -712,8 +707,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/converter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="224">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
