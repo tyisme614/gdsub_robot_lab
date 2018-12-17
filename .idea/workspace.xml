@@ -16,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="converter.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="converter.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/converter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="336">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
@@ -29,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/string_patterns.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="140">
-              <caret line="5" column="37" lean-forward="true" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+              <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -40,17 +40,44 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
+            <state relative-caret-position="770">
               <caret line="397" column="29" selection-start-line="397" selection-start-column="15" selection-end-line="397" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utilities.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="rttranslator.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RobotLab/routes/rttranslator.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rttranslator.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RobotLab/views/rttranslator.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-168">
+              <caret line="100" column="26" lean-forward="true" selection-start-line="98" selection-start-column="12" selection-end-line="100" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RobotLab/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="10" column="46" lean-forward="true" selection-start-line="10" selection-start-column="46" selection-end-line="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utilities.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RobotLab/utilities.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="98" column="27" lean-forward="true" selection-start-line="98" selection-start-column="27" selection-end-line="98" selection-end-column="27" />
+            <state relative-caret-position="560">
+              <caret line="23" column="35" lean-forward="true" selection-start-line="7" selection-start-column="23" selection-end-line="23" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -127,7 +154,7 @@
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/RobotLab/package.json" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1672" />
     <option name="y" value="-317" />
     <option name="width" value="1096" />
@@ -138,6 +165,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -145,17 +173,33 @@
               <item name="gdsub_robot_lab" type="b2602c69:ProjectViewProjectNode" />
               <item name="gdsub_robot_lab" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="gdsub_robot_lab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gdsub_robot_lab" type="462c0819:PsiDirectoryNode" />
+              <item name="RobotLab" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gdsub_robot_lab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gdsub_robot_lab" type="462c0819:PsiDirectoryNode" />
+              <item name="RobotLab" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gdsub_robot_lab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gdsub_robot_lab" type="462c0819:PsiDirectoryNode" />
+              <item name="RobotLab" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/converter.js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -203,7 +247,9 @@
       <workItem from="1542204129807" duration="370000" />
       <workItem from="1542212206472" duration="77000" />
       <workItem from="1542267052611" duration="1590000" />
-      <workItem from="1543390082151" duration="5543000" />
+      <workItem from="1543390082151" duration="6141000" />
+      <workItem from="1544091234224" duration="53000" />
+      <workItem from="1545021543013" duration="977000" />
     </task>
     <task id="LOCAL-00001" summary="output received data">
       <created>1527172387262</created>
@@ -300,23 +346,22 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37595000" />
+    <option name="totallyTimeSpent" value="39223000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1672" y="-317" width="1096" height="1896" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.32577905" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3254973" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32954547" />
-      <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.18238637" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32954547" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32954547" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -329,15 +374,15 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32954547" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.32577905" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32954547" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32954547" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
@@ -630,13 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RobotLab/routes/rttranslator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RobotLab/views/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -651,49 +689,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RobotLab/views/rttranslator.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RobotLab/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="924">
-          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/drive-download-20181128T075126Z-001/01-Introduction-c41SFEhMjNc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-355" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RobotLab/utilities.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="98" column="27" lean-forward="true" selection-start-line="98" selection-start-column="27" selection-end-line="98" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/string_patterns.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="5" column="37" lean-forward="true" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="397" column="29" selection-start-line="397" selection-start-column="15" selection-end-line="397" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Downloads/drive-download-20181128T075126Z-001/01-Introduction-c41SFEhMjNc" />
     <entry file="file://$PROJECT_DIR$/../../tmp/udacity_output/18-Navigation-vLFMWQpamzM.srt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-32631" />
@@ -705,10 +701,55 @@
     <entry file="file://$PROJECT_DIR$/../../tmp/udacity_output/03-Why_Dart-9q4SnR3LLy4.srt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="770">
+          <caret line="397" column="29" selection-start-line="397" selection-start-column="15" selection-end-line="397" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/string_patterns.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/converter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="336">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotLab/routes/rttranslator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotLab/views/rttranslator.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-168">
+          <caret line="100" column="26" lean-forward="true" selection-start-line="98" selection-start-column="12" selection-end-line="100" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotLab/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="10" column="46" lean-forward="true" selection-start-line="10" selection-start-column="46" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotLab/utilities.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="23" column="35" lean-forward="true" selection-start-line="7" selection-start-column="23" selection-end-line="23" selection-end-column="35" />
         </state>
       </provider>
     </entry>
