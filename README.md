@@ -2,5 +2,7 @@
 
 
 This project is created by Yuan from GDSub team.
-Test subtitle processing related apis and libraries here.
+All thoughts of subtitle processing or audio processing are implemented or tested in this project.
+The primary code is written in javascript on NodeJS. 
+
  
