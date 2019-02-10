@@ -18,7 +18,7 @@ const audioBytes = file.toString('base64');
 
 // The audio file's encoding, sample rate in hertz, and BCP-47 language code
 const audio = {
-    content: audioBytes,
+    content: audioBytes
 };
 const config = {
     encoding: 'FLAC',
@@ -27,8 +27,8 @@ const config = {
 };
 const request = {
     audio: audio,
-    config: config,
-    auth:
+    config: config
+
 };
 
 
