@@ -10,7 +10,7 @@ const client = new speech.SpeechClient({
 });
 
 // The name of the audio file to transcribe
-const fileName = '/home/yuan/resources/sample_16k.flac';
+const fileName = '/home/yuan/resources/sample_16k_mono.flac';
 
 // Reads a local audio file and converts it to base64
 const file = fs.readFileSync(fileName);
