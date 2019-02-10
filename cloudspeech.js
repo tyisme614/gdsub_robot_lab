@@ -3,7 +3,11 @@ const speech = require('@google-cloud/speech');
 const fs = require('fs');
 
 // Creates a client
-const client = new speech.SpeechClient();
+const projectID = 'GLocalizationProjects';
+const client = new speech.SpeechClient({
+    projectId: projectID,
+    keyFilename: '/home/yuan/auth/GLocalizationProjects-4f795dcb895a.json'
+});
 
 // The name of the audio file to transcribe
 const fileName = '/home/yuan/resources/sample_16k.flac';
@@ -24,6 +28,7 @@ const config = {
 const request = {
     audio: audio,
     config: config,
+    auth:
 };
 
 
