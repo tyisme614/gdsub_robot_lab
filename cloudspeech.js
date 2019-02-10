@@ -38,11 +38,13 @@ const request = {
 client
     .recognize(request)
     .then(data => {
+        console.log('data:' + JSON.stringify(data));
         const response = data[0];
         const transcription = response.results
             .map(result => result.alternatives[0].transcript)
             .join('\n');
         console.log(`Transcription: ${transcription}`);
+
     })
     .catch(err => {
         console.error('ERROR:', err);
