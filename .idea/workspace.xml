@@ -37,8 +37,8 @@
       <file leaf-file-name="cloudspeech.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cloudspeech.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+            <state relative-caret-position="297">
+              <caret line="28" column="27" lean-forward="true" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -468,7 +468,7 @@
       <workItem from="1542212206472" duration="77000" />
       <workItem from="1542267052611" duration="1590000" />
       <workItem from="1543390082151" duration="4785000" />
-      <workItem from="1549813037463" duration="681000" />
+      <workItem from="1549813037463" duration="771000" />
     </task>
     <task id="LOCAL-00001" summary="output received data">
       <created>1527172387262</created>
@@ -565,7 +565,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43262000" />
+    <option name="totallyTimeSpent" value="43352000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="995" extended-state="6" />
@@ -979,8 +979,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cloudspeech.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+        <state relative-caret-position="297">
+          <caret line="28" column="27" lean-forward="true" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
         </state>
       </provider>
     </entry>

@@ -1,5 +1,5 @@
 // Imports the Google Cloud client library
-const speech = require('@google-cloud/speech');
+const speech = require('@google-cloud/speech').v1p1beta1;
 const fs = require('fs');
 
 // Creates a client
@@ -26,7 +26,8 @@ const config = {
     encoding: 'FLAC',
     sampleRateHertz: 16000,
     languageCode: 'en-US',
-    enableWordTimeOffsets: 'true'
+    enableWordTimeOffsets: true,
+    enableAutomaticPunctuation: true
 };
 const request = {
     audio: audio,
