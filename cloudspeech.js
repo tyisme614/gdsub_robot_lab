@@ -4,12 +4,12 @@ const fs = require('fs');
 
 // Creates a client
 const projectID = 'GLocalizationProjects';
-// const client = new speech.SpeechClient({
-//     projectId: projectID,
-//     keyFilename: '/home/yuan/auth/GLocalizationProjects-4f795dcb895a.json'
-// });
+const client = new speech.SpeechClient({
+    projectId: projectID,
+    keyFilename: '/home/yuan/auth/GLocalizationProjects-4f795dcb895a.json'
+});
 
-const client = new speech.SpeechClient();
+//const client = new speech.SpeechClient();
 
 // The name of the audio file to transcribe
 const fileName = '/home/yuan/resources/sample_30s_16k_mono.flac';
