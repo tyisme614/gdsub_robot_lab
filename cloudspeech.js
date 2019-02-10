@@ -26,6 +26,7 @@ const config = {
     encoding: 'FLAC',
     sampleRateHertz: 16000,
     languageCode: 'en-US',
+    enableWordTimeOffsets: 'true'
 };
 const request = {
     audio: audio,
