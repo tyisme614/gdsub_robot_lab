@@ -4,13 +4,15 @@ const fs = require('fs');
 
 // Creates a client
 const projectID = 'GLocalizationProjects';
-const client = new speech.SpeechClient({
-    projectId: projectID,
-    keyFilename: '/home/yuan/auth/GLocalizationProjects-4f795dcb895a.json'
-});
+// const client = new speech.SpeechClient({
+//     projectId: projectID,
+//     keyFilename: '/home/yuan/auth/GLocalizationProjects-4f795dcb895a.json'
+// });
+
+const client = new speech.SpeechClient();
 
 // The name of the audio file to transcribe
-const fileName = '/home/yuan/resources/sample_16k_mono.flac';
+const fileName = '/home/yuan/resources/sample_30s_16k_mono.flac';
 
 // Reads a local audio file and converts it to base64
 const file = fs.readFileSync(fileName);
@@ -33,18 +35,30 @@ const request = {
 
 
 //try recognize
-client.longRunningRecognize(request, null, (err, response) => {
-    if(err){
-        console.log('encountered error:' + err.toString());
-    }else{
-        console.log('got response from api:' + JSON.stringify(response));
-        // response.results
-        //     .map(result => result.alternatives[0].transcript)
-        //     .join('\n');
-        // console.log(`Transcription: ${transcription}`);
-    }
-
-});
+client
+    .recognize(request)
+    .then(data => {
+        const response = data[0];
+        const transcription = response.results
+            .map(result => result.alternatives[0].transcript)
+            .join('\n');
+        console.log(`Transcription: ${transcription}`);
+    })
+    .catch(err => {
+        console.error('ERROR:', err);
+    });
+// client.longRunningRecognize(request, null, (err, response) => {
+//     if(err){
+//         console.log('encountered error:' + err.toString());
+//     }else{
+//         console.log('got response from api:' + JSON.stringify(response));
+//         // response.results
+//         //     .map(result => result.alternatives[0].transcript)
+//         //     .join('\n');
+//         // console.log(`Transcription: ${transcription}`);
+//     }
+//
+// });
 
 // Detects speech in the audio file. This creates a recognition job that you
 // can wait for now, or get its result later.
