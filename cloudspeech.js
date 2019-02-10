@@ -29,10 +29,16 @@ const request = {
 
 //try recognize
 client.longRunningRecognize(request, null, (err, response) => {
-    response.results
-    .map(result => result.alternatives[0].transcript)
-    .join('\n');
-    console.log(`Transcription: ${transcription}`);
+    if(err){
+        console.log('encountered error:' + err.toString());
+    }else{
+        console.log('got response from api:' + response);
+        // response.results
+        //     .map(result => result.alternatives[0].transcript)
+        //     .join('\n');
+        // console.log(`Transcription: ${transcription}`);
+    }
+
 });
 
 // Detects speech in the audio file. This creates a recognition job that you
