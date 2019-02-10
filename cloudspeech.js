@@ -37,7 +37,7 @@ client.longRunningRecognize(request, null, (err, response) => {
     if(err){
         console.log('encountered error:' + err.toString());
     }else{
-        console.log('got response from api:' + response);
+        console.log('got response from api:' + JSON.stringify(response));
         // response.results
         //     .map(result => result.alternatives[0].transcript)
         //     .join('\n');
